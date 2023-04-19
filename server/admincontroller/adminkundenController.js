@@ -217,62 +217,7 @@ exports.viewAdminKundenFoto = (req, res) => {
     });
   }); 
 }
-const fs = require('fs');
-const path = require('path');
-const { log } = require('console');
-exports.saveAdminKundenFoto = (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('Es wurde kein Foto ausgewählt.');
-  }
-  // Speichern des Dateipfads in der Datenbank
-  const tempFilePath = req.file.path;
-  // Pfad zum Speicherort, an dem die Datei gespeichert werden soll
-  const newFileName = req.file.filename;
-  const newFilePath = path.posix.join('../uploads/', newFileName);
-  // Lesen und Schreiben der Datei
-  fs.readFile(tempFilePath, (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Es ist ein Fehler aufgetreten.');
-    } else {  
-      // Speichern des Dateipfads in der Datenbank
-      const id = req.body.id;
-      const query = 'INSERT INTO foto (kunden_id, Fotos) VALUES (?, ?)';
-      connection.query(query, [id, newFilePath], (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send('Es ist ein Fehler aufgetreten.');
-        }
-        res.redirect('back');
-      });
-    }
-  });
-};
-exports.deleteAdminKundenFoto = (req, res) => {
-  const id = req.params.id;
-  const query = 'SELECT Fotos FROM foto WHERE id = ?';
-  connection.query(query, [id], (err, result) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Es ist ein Fehler bei der sql ausgabe aufgetreten.');
-    }
-    const filePath = path.posix.join(__dirname, '..', 'public', 'uploads', result[0].Fotos);
-    fs.unlink(filePath, (err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Es ist ein Fehler im fs.unlink aufgetreten.');
-      }
-      const query = 'DELETE FROM foto WHERE id = ?';
-      connection.query(query, [id], (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send('Es ist ein Fehler beim löschen aufgetreten.');
-        }
-        res.redirect('back');
-      });
-    });
-  });
-};
+
 //Kundenübersicht
 
 exports.viewAdminKundenDruck = (req, res) => {

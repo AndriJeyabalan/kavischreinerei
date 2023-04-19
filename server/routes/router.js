@@ -127,10 +127,7 @@ router.get('/adminkundenfoto/:id',requireAdmin,requireLogin, adminkundenControll
 
 router.get('/adminkundendruck/:id',requireAdmin,requireLogin, adminkundenController.viewAdminKundenDruck);
 // Middleware für Datei-Uploads
-const upload = multer({ storage, fileFilter });
-// Route für Datei-Uploads
-router.post('/upload', requireAdmin, requireLogin, upload.single('photo'), adminkundenController.saveAdminKundenFoto);
-router.post('/deleteadminkundenfoto/:id', requireAdmin, requireLogin, adminkundenController.deleteAdminKundenFoto);
+
 //Admin Mitarbeiter
 router.get('/adminmitarbeiter',requireAdmin,requireLogin, adminmitarbeiterController.viewAdminMitarbeiter);
 //Admin Termine
