@@ -4,7 +4,7 @@
   "description": "Seite mit ChatGPT enwickelt",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "build": "echo sucsess",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
