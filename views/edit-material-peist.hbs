@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>editMaterialPeist</title>
+    <link rel="stylesheet" type="text/css" href="../css/material.css">
+  </head>
+<body>
+
+  <div class="navbar">
+    <a href="/editmaterial/{{rowsmaterial.Id}}" class="back-button">
+      <img src="../images/back-arrow.png" alt="Zurück" />
+    </a>
+    <h1>{{rowsmaterial.Name}}</h1>
+  </div>
+
+  <form method="POST" action="/editmaterialpeisteintrag/{{rowsmaterial.Id}}">
+    <div>
+      <label for="aufenthaltsort">Ort:</label>
+      <p>{{rows.Aufenthaltsort}}</p>
+          <input type="hidden" name="aufenthaltsort" value="{{rows.Aufenthaltsort}}" />
+    </div>
+    <div>
+      <label for="notiz">Notiz:</label>
+      <textarea type="text" id="notiz" name="notiz" title="Bitte geben Sie eine neue Notiz ein">{{rows.Notiz}}</textarea>
+    </div>
+    <div>
+      <input type="hidden" name="id" value="{{rows.Id}}" />
+      <label for="AnzahlPeist">Anzahl Peist:</label>
+      <input type="number" id="wert" name="wert" value="{{rowsmaterial.AnzahlPeist}}" />
+      <input type="submit" value="Bestätigen" id="nehmen-btn" name="action" class="nehmen-btn" />
+    </div>
+  </form>
+  
+</body>
+
+</html>     

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminwerkzeug.css">
+  </head>
+  <body> 
+    <nav class="navbar">
+      <ul>
+        <li class="ausgewählt"><a href="/lieferanten">Lieferanten</a></li>
+      </ul> 
+    </nav> 
+        <nav class="navbar">
+      <ul>
+        <li class="ausgewählt"><a href="/adminverkaufer">Verkäufer</a></li>
+      </ul> 
+    </nav>
+        <form class="filter-form">
+            <input type="text" placeholder="Suchen" name="search">
+            <button type="submit">Filtern/Suchen</button>
+        </form> 
+            <table class="table"> 
+                    <thead class="thead">
+                        <tr>
+                            <th>#</th>
+                            <th scope="col"><a href="?sortBy=Id&sortOrder={{sortOrder}}">id</a></th> 
+                            <th scope="col"><a href="?sortBy=Name&sortOrder={{sortOrder}}">Name</a></th>
+                            <th scope="col"><a href="?sortBy=Verantwortungsbereich&sortOrder={{sortOrder}}">Verantwortungsbereich</a></th>
+                            <th scope="col"><a href="?sortBy=Email&sortOrder={{sortOrder}}">E-Mail</a></th>
+                            <th scope="col"><a href="?sortBy=Tel&sortOrder={{sortOrder}}">Telefonnummer</a></th>
+                            <th scope="col"><a href="?sortBy=Firma&sortOrder={{sortOrder}}">Firma</a></th>
+                            <th scope="col"><a href="?sortBy=Notiz&sortOrder={{sortOrder}}">Notiz</a></th>
+                            <th scope="col"><a href="?sortBy=Ferien&sortOrder={{sortOrder}}">Ferien</a></th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminverkaufer">
+                            <tr> 
+                                <td ></td>
+                                <td ><input name="id"/></td>
+                                <td><input name="name"/></td>
+                                <td ><input name="verantwortungsbereich"/></td>
+                                <td><input name="email"/></td>
+                                <td><input name="tel"/></td>
+                                <td ><input name="firma"/></td>
+                                <td><input name="notiz"/></td>
+                                <td><input name="ferien"/></td>
+                                <td>
+                                    <span class="icon-grid">
+                                         <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </form>  
+                    {{#each rows}}  
+                        <tr> 
+                            <form name="adminform" id="admin-form" method="POST" action="/deleteadminverkaufer/{{this.Id}}">
+                                <td>
+                                    <span class="icon-grid">
+                                        <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                    </span>
+                                </td>
+                            </form>
+                            <form name="adminform" id="admin-form" method="POST" action="/updateadminverkaufer/{{this.Id}}">
+                                <td ><input name="id" value="{{this.Id}}" /></td>
+                                <td><input name="name" value="{{this.Name}}"/></td>
+                                <td><input name="verantwortungsbereich" value="{{this.Verantwortungsbereich}}"/></td>
+                                <td ><input name="email" value="{{this.Email}}"/></td>
+                                <td><input name="tel" value="{{this.Tel}}"/></td>
+                                <td><input name="firma" value="{{this.Firma}}"/></td>
+                                <td ><input name="notiz" value="{{this.Notiz}}"/></td>
+                                <td><input name="ferien" value="{{this.Ferien}}"/></td>
+                                <td>
+                                    <span class="icon-grid">
+                                        <button class="bestätigen-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                                    </span> 
+                                </td>
+                            </form>  
+                        </tr> 
+                       
+                    {{/each}}
+                </tbody>
+            </table> 
+    </body>
+</html>

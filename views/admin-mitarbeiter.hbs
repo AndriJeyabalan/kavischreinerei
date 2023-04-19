@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminmitarbeiter.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/adminstunden">Stunden</a></li>
+        <li><a href="/adminkunden">Kunden</a></li>
+        <li class="ausgewählt"><a href="/adminmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/admintermine">Termine</a></li>
+        <li><a href="/adminpost">Post</a></li>
+        <li><a href="/adminwerkzeug">Werkzeug</a></li>
+        <li><a href="/adminmaterial">Material</a></li>
+        <li><a href="/adminfahrzeuge">Fahrzeuge</a></li>
+        <li><a href="/adminschluessel">Schlüssel</a></li>
+        <li><a href="/adminschule">Schule</a></li>
+        <li><a href="/lieferanten">Lieferanten</a></li>
+        <li><a href="/backup">Backup</a></li>
+      </ul>
+    </nav>
+   <div class="tabellencontainer"> 
+      <div class="sidetable">
+          <table class="table" >
+              <thead class="thead">
+                  <tr>              
+                    <th scope="col">Stundenabrechnung Woche</th>
+                  </tr>
+              </thead>
+              <tbody class="tbody">
+                {{#each rows}}
+                  <tr class="namenrow">  
+                      <td class="namedata">{{this.Arbeitername}} Woche:{{this.Woche}}</td>
+                  </tr>
+                  <tr class="wochenrow"><td class="wochendata" colspan="6">Stunden: {{this.Wochenstunden}} </td></tr>
+                {{/each}}
+              </tbody>
+            </table> 
+        </div>
+        <div class="sidetable">
+          <table class="table" >
+              <thead class="thead">
+                  <tr>              
+                    <th scope="col">Stundenabrechnung Monat</th>
+                  </tr>
+              </thead>
+              <tbody class="tbody">
+                {{#each rowsMonat}}
+                  <tr class="namenrow">  
+                      <td class="namedata">{{this.Arbeitername}}  {{this.Monat}}</td>
+                  </tr>
+                  <tr class="monatsrow"><td class="monatsdata" colspan="6">Stunden im Monat: {{this.Monatsstunden}}</td></tr>
+                {{/each}}
+              </tbody>
+            </table> 
+        </div>
+      </div>
+    </body>
+</html>

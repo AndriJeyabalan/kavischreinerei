@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminwerkzeug.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/adminstunden">Stunden</a></li>
+        <li><a href="/adminkunden">Kunden</a></li>
+        <li><a href="/adminmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/admintermine">Termine</a></li>
+        <li><a href="/adminpost">Post</a></li>
+        <li><a href="/adminwerkzeug">Werkzeug</a></li>
+        <li><a href="/adminmaterial">Material</a></li>
+        <li><a href="/adminfahrzeuge">Fahrzeuge</a></li>
+        <li><a href="/adminschluessel">Schlüssel</a></li>
+        <li class="ausgewählt"><a href="/adminschule">Schule</a></li>
+        <li><a href="/lieferanten">Lieferanten</a></li>
+        <li><a href="/backup">Backup</a></li>
+      </ul>
+    </nav> 
+            <form class="filter-form">
+                <input type="text" placeholder="Suchen" name="search">
+                <select id="select" name="select" title="Wählen Sie den Typ des Werkzeugs aus">
+                    <option value="" disabled selected>Filtern</option>
+                    <option value="Bau">Bau</option>
+                    <option value="Werkstadt">Werkstadt</option>
+                </select>
+                <button type="submit">Filtern/Suchen</button>
+            </form> 
+          <table class="table" > 
+              <thead class="thead">
+                  <tr>    
+                    <th scope="col">#</th>          
+                    <th scope="col"><a href="?sortBy=Id&sortOrder={{sortOrder}}">Id</a></th> 
+                    <th scope="col"><a href="?sortBy=Kurzbezeichnung&sortOrder={{sortOrder}}">Kurzbezeichnung</a></th>
+                    <th scope="col"><a href="?sortBy=Bezeichnung&sortOrder={{sortOrder}}">Bezeichnung</a></th>
+                    <th scope="col"><a href="?sortBy=Beschrieb&sortOrder={{sortOrder}}">Beschrieb</a></th>
+                    <th scope="col"><a href="?sortBy=Material_Werkzeug&sortOrder={{sortOrder}}">Material und Werkzeug</a></th>
+                    <th scope="col">#</th>
+                  </tr>
+              </thead>
+              <tbody class="tbody">
+                <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminschuhle">
+                            <tr> 
+                                <td></td>
+                                <td></td>
+                                <td ><input name="kurzbezeichnung"/></td>
+                                <td ><input name="bezeichnung"/></td>
+                                <td><input name="beschrieb"/></td>
+                                <td ><input name="material_werkzeug"/></td>
+                                <td>
+                                    <span class="icon-grid">
+                                         <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                    </span>
+                                </td>
+                            </tr>  
+                    </form> 
+                {{#each rows}} 
+                  <tr>  
+                          <form name="adminform" id="admin-form" method="POST" action="/deleteadminschuhle/{{this.Id}}">
+                                <td>
+                                    <span class="icon-grid">
+                                        <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                    </span>
+                                </td> 
+                          </form>
+                          <form name="adminform" id="admin-form" method="POST" action="/updateadminschuhle/{{this.Id}}">
+                            <td ><input name="id" value="{{this.Id}}" /></td>
+                            <td><input name="kurzbezeichnung" value="{{this.Kurzbezeichnung}}"/></td>
+                            <td><input name="bezeichnung" value="{{this.Bezeichnung}}"/></td>
+                            <td><textarea name="beschrieb"/>{{this.Beschrieb}}</textarea></td>
+                            <td><textarea name="material_werkzeug"/>{{this.Material_Werkzeug}}</textarea></td>
+                            <td>
+                              <span class="icon-grid">
+                                <button class="save-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                              </span>
+                            </td>
+                        </form>   
+                      </tr>
+                {{/each}}
+              </tbody>
+            </table> 
+        </body>
+</html>

@@ -1,0 +1,250 @@
+/*Navbar*/
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.navbar li {
+  float: left;
+}
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 21px;
+}
+.navbar li a:hover {
+  background-color: #111;
+}
+.ausgewählt{
+  font-weight: bold;
+  text-decoration: underline;
+  color: rgb(201, 80, 80);
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin-right: 20px;
+}
+a {
+  color: #333;
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.ueberschrift{
+  color: white;
+  padding: 14px 16px;
+  font-size: 21px;
+  margin-left: 500px;
+}
+.rechts{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/*Card styling*/
+.card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    margin-bottom: 5px;
+    transition: box-shadow 0.3s ease;
+  }
+  .card:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  }
+  .card-header {
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+  .card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px; 
+  }
+  .card-title span {
+    flex: 1;
+  }  
+  .card-body {
+    padding: 10px; 
+    width: 800px;
+  }
+  .card-text {
+    margin: 0;
+    font-size: 16px; 
+  }
+  .card-footer{
+    display: flex;
+  }
+  input {
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  textarea{
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .löschen-btn{
+    background-color: rgb(216, 56, 56);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .löschen-btn:hover {
+    background-color: rgb(207, 112, 112);
+  }
+/* Select */
+select {
+  background-color: transparent;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+  padding: 5px;
+}
+select:focus {
+  border-bottom: 1px solid #6699cc;
+}
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  }
+  form input[type="text"], form select, form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  }
+  .auswählen-btn:hover {
+  background-color: #6ca8e9;
+  }
+.speichern-btn:hover {
+  background-color: rgb(156, 216, 179);
+  }
+.zuordnen-btn:hover {
+  background-color: rgb(204, 190, 228);
+  }
+  form textarea {
+  height: 80px;
+  }
+  form select {
+  width: 100%; 
+  }
+  p{
+    margin-right: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .auswählen-btn{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .zuordnen-btn{
+    background-color: rgb(170, 129, 236);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .speichern-btn{
+    background-color: rgb(72, 177, 112);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  /*Nebeneinander anzeigen */
+  .sidetable{
+    overflow-y: auto;
+    overflow-y: scroll;
+    height: 850px;
+    float: left;
+  }
+.tabellencontainer{
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+  overflow-y: scroll;
+}
+/*Verrechnet in der Karte*/
+.datencontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stunden {
+  margin-right: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.verrechnet {
+  margin-left: 10px;
+  font-weight: bold;
+}
+.offeriert {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.titel{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+/*Suchen und Filtern*/
+.filter-form {
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  }
+  .filter-form input[type="text"],
+  .filter-form select,
+  .filter-form button[type="submit"] {
+  margin: 0 10px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  }
+  .filter-form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  }

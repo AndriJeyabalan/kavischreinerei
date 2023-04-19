@@ -1,0 +1,26 @@
+<form name="tankenform" id="tanken-form" method="POST" action="/editfahrzeug/{{rows.Id}}" onSubmit="showAlert()">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <label for="Tanken"></label>
+                <input name="menge" id="menge" class="tanken" type="Number" required/><p> Liter</p>
+                <label for="Preis"></label>
+                <input name="preis" id="preis" class="tanken" type="Number" required/><p> Franken</p>
+                </div>
+                <div class="card-footer">
+                <input type="hidden" name="id" value="{{rows.Id}}" />
+                <input type="submit" value="Tanken" id="auswählen-btn" name="action" class="auswählen-btn" />
+                </div>
+            </div>
+        </form>
+
+<script>
+  function showAlert() {
+    const mengeInput = document.getElementById("menge");
+    const menge = mengeInput.value;
+    const preisInput = document.getElementById("preis");
+    const preis = preisInput.value;
+    alert(`Sie haben ${menge} Liter für ${preis} Fr. getankt!`);
+  }
+</script>

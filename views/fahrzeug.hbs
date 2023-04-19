@@ -1,0 +1,43 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fahrzeug eintragen</title>
+    <link rel="stylesheet" type="text/css" href="css/fahrzeug.css">
+  </head>
+  <body>
+
+    <div class="navbar">
+       <a href="/index" class="back-button">
+        <img src="images/back-arrow.png" alt="Zurück" />
+      </a> 
+      <h1>Fahrzeuge</h1>
+    </div>
+
+    <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" >id</th> 
+            <th scope="col">Name</th>
+            <th scope="col">#</th>
+        </tr>
+    </thead>
+    
+     <tbody>
+        {{#each rows}}
+        <tr>
+            <td >{{this.Id}}</td>
+            <td>{{this.Name}}</td>
+            <td>
+                <span class="icon-grid">
+                    <a href="/editfahrzeug/{{this.Id}}" class="icon" aria-label="Bearbeiten">
+                    <img src="/images/bearbeiten-icon.png" alt="Bearbeiten"> 
+                    </a> 
+                </span>
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+       </table>
+  </body>
+</html>

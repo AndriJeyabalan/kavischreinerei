@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminstunden.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/admin">Home</a></li>
+        <li class="ausgewählt"><a href="/adminstunden">Stunden</a></li>
+        <li><a href="/adminkunden">Kunden</a></li>
+        <li><a href="/adminmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/admintermine">Termine</a></li>
+        <li><a href="/adminpost">Post</a></li>
+        <li><a href="/adminwerkzeug">Werkzeug</a></li>
+        <li><a href="/adminmaterial">Material</a></li>
+        <li><a href="/adminfahrzeuge">Fahrzeuge</a></li>
+        <li><a href="/adminschluessel">Schlüssel</a></li>
+        <li><a href="/adminschule">Schule</a></li>
+        <li><a href="/lieferanten">Lieferanten</a></li>
+        <li><a href="/backup">Backup</a></li>
+      </ul>
+    </nav>
+   <div class="tabellencontainer"> 
+      <div class="sidetable">
+          <form class="filter-form">
+                <div class="search-container">
+                    <input class="suchen" type="text" placeholder="Suchen" name="searchstunden">
+                </div>
+                <div class="filter-container">
+                   <select id="filter-type" name="filter-type" title="Wählen Sie den Typ des Werkzeugs aus">
+                      <option value="" disabled selected>Filtern</option>
+                      <option value="Ja">Ja</option>
+                      <option value="Nein">Nein</option>
+                  </select> 
+                    <button class="such-btn" type="submit">Suchen/Filtern</button>
+                </div>
+            </form>
+          <table class="table" >
+              <thead class="thead">
+                  <tr>
+                    <th scope="col"><a href="?sortBy=id&sortOrder={{sortOrder}}">id</a></th> 
+                    <th scope="col"><a href="?sortBy=kundenname&sortOrder={{sortOrder}}">Kundenname</a></th>
+                    <th scope="col"><a href="?sortBy=stunden&sortOrder={{sortOrder}}">Stunden</a></th>
+                    <th scope="col"><a href="?sortBy=verrechnet&sortOrder={{sortOrder}}">Verrechnet</a></th>
+                    <th scope="col"><a href="?sortBy=erledigte_arbeit&sortOrder={{sortOrder}}">Erledigte Arbeit</a></th>
+                    <th scope="col"><a href="?sortBy=arbeitername&sortOrder={{sortOrder}}">Arbeitername</a></th>
+                    <th scope="col"><a href="?sortBy=datum&sortOrder={{sortOrder}}">Erstellt</a></th>
+                    <th scope="col"><a href="?sortBy=kontrolliert&sortOrder={{sortOrder}}">Kontrolliert</a></th>
+                    <th scope="col">Ja/Nein</th>
+                    <th scope="col"><a href="?sortBy=kundenid&sortOrder={{sortOrder}}">KundenId</a></th>
+                    <th>#</th>
+                  </tr>
+              </thead>
+              <tbody class="tbody">
+                  {{#each rows}}
+                     <tr>  
+                          <form name="adminform" id="admin-form" method="POST" action="/adminstunden/{{this.Id}}">
+                            <td ><input name="id" value="{{this.Id}}" /></td>
+                            <td><input name="kundenname" value="{{this.Kundenname}}"/></td>
+                            <td ><input name="stunden" value="{{this.Stunden}}"/></td>
+                            <td ><input name="verrechnet" value="{{this.Verrechnet}}"/></td>
+                            <td><textarea name="erledigte_arbeit"/>{{this.Erledigte_Arbeit}}</textarea></td>
+                            <td><input name="arbeitername" value="{{this.Arbeitername}}"/></td>
+                            <td ><input name="datum" value="{{this.Datum}}"/></td>
+                            <td><input name="kontrolliert" value="{{this.Kontrolliert}}"/></td>
+                            <td>              
+                              <select name="bestätigt" id="bestätigt-select" title="soll bestätigt oder zurückgesetzt werden">
+                                  <option value="Ja">Ja</option>
+                                  <option value="Nein">Nein</option>
+                                </select>
+                            </td> 
+                            <td><input name="kundenid" value="{{this.KundenId}}"/></td>
+                            <td>
+                              <span class="icon-grid">
+                                <input type="submit" class="bestätigen-btn" value="Bestätigen">
+                              </span>
+                            </td>
+                        </form>   
+                      </tr>
+                    {{/each}}
+                  </tbody>
+            </table> 
+        </div>
+        <div class="sidetable">
+              <form class="filter-form">
+                  <div class="search-container">
+                      <input class="suchen" type="text" placeholder="Suchen" name="search">
+                  </div>
+                  <div class="filter-container">
+                      <button class="such-btn" type="submit">Suchen</button>
+                  </div>
+              </form>
+            <table class="table">
+                <thead class="thead">
+                  <tr>
+                      <th scope="col" >id</th> 
+                      <th scope="col">Name</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody">
+                      {{#each rowsKunde}}
+                      <tr>
+                          <td >{{this.id}}</td>
+                          <td>{{this.Vorname}} {{this.Nachname}}</td>
+                      </tr>
+                      {{/each}}
+                  </tbody>
+            </table>
+          </div> 
+      </div>
+    </body>
+</html>

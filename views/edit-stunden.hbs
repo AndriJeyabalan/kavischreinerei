@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>editstunden</title>
+   
+    <link rel="stylesheet" type="text/css" href="../css/stunden.css">
+  </head>
+  <body>
+    <div class="navbar"> 
+        <a href="/stunden" class="back-button">
+        <img src="../images/back-arrow.png" alt="Zurück" />
+      </a>
+        <h1> Stundeneintrag</h1>
+    </div>
+
+     <form class="row g-3 needs-validation" method="POST" action="/editstunden/{{rows.Id}}" >
+        {{> edit-stunden-form}} 
+    </form>
+
+  </body>
+</html>
+
+    

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminmaterial.css">
+    <style>
+     
+    </style>
+  </head>
+  <body>
+        <nav class="navbar">
+      <ul>
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/adminstunden">Stunden</a></li>
+        <li><a href="/adminkunden">Kunden</a></li>
+        <li><a href="/adminmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/admintermine">Termine</a></li>
+        <li><a href="/adminpost">Post</a></li>
+        <li><a href="/adminwerkzeug">Werkzeug</a></li>
+        <li  class="ausgewählt"><a href="/adminmaterial">Material</a></li>
+        <li><a href="/adminfahrzeuge">Fahrzeuge</a></li>
+        <li><a href="/adminschluessel">Schlüssel</a></li>
+        <li><a href="/adminschule">Schule</a></li>
+        <li><a href="/lieferanten">Lieferanten</a></li>
+        <li><a href="/backup">Backup</a></li>
+      </ul> 
+    </nav> 
+    <nav class="navbar">
+      <ul>
+        <li><a href="/adminmaterialarosa">Arosa</a></li>
+        <li><a href="/adminmaterialpeist">Peist</a></li>
+      </ul> 
+    </nav>
+        <form class="filter-form">
+            <input type="text" placeholder="Suchen" name="search">
+            <select id="select" name="select" title="Wählen Sie den Typ des Materials aus">
+                <option value="" disabled selected>Filtern</option>
+                <option value="Verbindung">Verbindungen</option>
+                <option value="Massivholz">Massivholz</option>
+                <option value="Platten">Platten</option>
+                <option value="Öl"> Öl</option>
+                <option value="Andere">Andere</option>
+            </select>
+            <button type="submit">Filtern/Suchen</button>
+        </form>
+            <table class="table">
+                    <thead class="thead">
+                        <tr>
+                            <th>#</th>
+                            <th scope="col"><a href="?sortBy=Id&sortOrder={{sortOrder}}">Id</a></th> 
+                            <th scope="col"><a href="?sortBy=Bezeichnung&sortOrder={{sortOrder}}">Bezeichnung</a></th>
+                            <th scope="col"><a href="?sortBy=Name&sortOrder={{sortOrder}}">Name</a></th>
+                            <th scope="col"><a href="?sortBy=AnzahlArosa&sortOrder={{sortOrder}}">Arosa</a></th>
+                            <th scope="col"><a href="?sortBy=AnzahlPeist&sortOrder={{sortOrder}}">Peist</a></th>
+                            <th scope="col"><a href="?sortBy=Artikelnummer&sortOrder={{sortOrder}}">Art.Nr</a></th>
+                            <th scope="col"><a href="?sortBy=Lieferant&sortOrder={{sortOrder}}">Lieferant</a></th>
+                            <th scope="col"><a href="?sortBy=Einkaufspreis&sortOrder={{sortOrder}}">Einkaufspreis</a></th>
+                            <th scope="col"><a href="?sortBy=Verkaufspreis&sortOrder={{sortOrder}}">Verkaufspreis</a></th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminmaterial">
+                            <tr> 
+                                <td ></td>
+                                <td ><input name="id"/></td>
+                                <td>
+                                    <select id="bezeichnung" name="bezeichnung" title="Wählen Sie den Typ des Materials aus">
+                                        <option value="Verbindung">Verbindungen</option>
+                                        <option value="Massivholz">Massivholz</option>
+                                        <option value="Platten">Platten</option>
+                                        <option value="Öl"> Öl</option>
+                                        <option value="Andere">Andere</option>
+                                    </select>
+                                </td>
+                                <td><input name="name"/></td>
+                                <td><input name="arosa"/></td>
+                                <td><input name="peist"/></td>
+                                <td><input name="artnr"/></td>
+                                <td><input name="lieferant"/></td>
+                                <td><input name="einkaufspreis"/></td>
+                                <td><input name="verkaufspreis"/></td>
+                                <td>
+                                    <span class="icon-grid">
+                                         <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </form>  
+                    {{#each rows}}  
+                        <tr> 
+                            <form name="adminform" id="admin-form" method="POST" action="/deleteadminmaterial/{{this.Id}}">
+                                <td>
+                                    <span class="icon-grid">
+                                        <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                    </span>
+                                </td>
+                            </form>
+                            <form name="adminform" id="admin-form" method="POST" action="/adminmaterial/{{this.Id}}">
+                                <td ><input name="id" value="{{this.Id}}" /></td>
+                                <td><input name="bezeichnung" value="{{this.Bezeichnung}}"/></td>
+                                <td><input name="name" value="{{this.Name}}"/></td>
+                                <td><input name="arosa" value="{{this.AnzahlArosa}}"/></td>
+                                <td><input name="peist" value="{{this.AnzahlPeist}}"/></td>
+                                <td><input name="artnr" value="{{this.Artikelnummer}}"/></td>
+                                <td><input name="lieferant" value="{{this.Lieferant}}"/></td>
+                                <td><input name="einkaufspreis" value="{{this.Einkaufspreis}}"/></td>
+                                <td><input name="verkaufspreis" value="{{this.Verkaufspreis}}"/></td>
+                                <td>
+                                    <span class="icon-grid">
+                                        <button class="bestätigen-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                                    </span> 
+                                </td>
+                            </form>  
+                        </tr> 
+                    {{/each}}
+                </tbody>
+            </table> 
+    </body>
+</html>

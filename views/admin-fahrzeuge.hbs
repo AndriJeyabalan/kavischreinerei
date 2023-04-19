@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminfahrzeuge.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/adminstunden">Stunden</a></li>
+        <li><a href="/adminkunden">Kunden</a></li>
+        <li><a href="/adminmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/admintermine">Termine</a></li>
+        <li><a href="/adminpost">Post</a></li>
+        <li><a href="/adminwerkzeug">Werkzeug</a></li>
+        <li><a href="/adminmaterial">Material</a></li>
+        <li  class="ausgewählt"><a href="/adminfahrzeuge">Fahrzeuge</a></li>
+        <li><a href="/adminschluessel">Schlüssel</a></li>
+        <li><a href="/adminschule">Schule</a></li>
+        <li><a href="/lieferanten">Lieferanten</a></li>
+        <li><a href="/backup">Backup</a></li>
+      </ul>
+    </nav>
+          <table class="table" > 
+              <thead class="thead">
+                  <tr>    
+                    <th scope="col">#</th>          
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Autonummer</th>
+                    <th scope="col">Marke</th>
+                    <th scope="col">Kraftstoff</th>
+                    <th scope="col">Letzte Inspektion</th>
+                    <th scope="col">Nächste Inspektion</th>
+                    <th scope="col">#</th>
+                  </tr>
+              </thead>
+              <tbody class="tbody">
+                <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminfahrzeuge">
+                            <tr> 
+                                <td></td>
+                                <td></td>
+                                <td><input name="name"/></td>
+                                <td ><input name="autonummer"/></td>
+                                <td ><input name="marke"/></td>
+                                <td><input name="kraftstoff"/></td>
+                                <td ><input name="letzte"/></td>
+                                <td><input name="naechste"/></td>
+                                <td>
+                                    <span class="icon-grid">
+                                         <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                    </span>
+                                </td>
+                            </tr>  
+                    </form> 
+                {{#each rows}} 
+                  <tr>  
+                          <form name="adminform" id="admin-form" method="POST" action="/deleteadminfahrzeuge/{{this.Id}}">
+                                <td>
+                                    <span class="icon-grid">
+                                        <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                    </span>
+                                </td> 
+                          </form>
+                          <form name="adminform" id="admin-form" method="POST" action="/adminfahrzeuge/{{this.Id}}">
+                            <td ><input name="id" value="{{this.Id}}" /></td>
+                            <td><input name="name" value="{{this.Name}}"/></td>
+                            <td ><input name="autonummer" value="{{this.Autonummer}}"/></td>
+                            <td ><input name="marke" value="{{this.Marke}}"/></td>
+                            <td><textarea name="kraftstoff"/>{{this.Kraftstoff}}</textarea></td>
+                            <td><input name="letzte" value="{{this.formatiertes}}"/></td>
+                            <td ><input name="naechste" value="{{this.formatiertes_Datum}}"/></td>
+                            <td>
+                              <span class="icon-grid">
+                                <button class="save-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                              </span>
+                            </td>
+                        </form>   
+                      </tr>
+                {{/each}}
+              </tbody>
+            </table> 
+            <table class="table" > 
+                <thead class="thead">
+                    <tr>              
+                    <th scope="col">FahrzeugId</th>
+                    <th scope="col">Lieter Gesammt</th>
+                    <th scope="col">Preis Gesammt</th>
+                  </tr>
+                </thead>
+                    <tbody class="tbody">
+                        {{#each rowstankensum}} 
+                            <tr>  
+                                <td><input name="FahrzeugId" value="{{this.FahrzeugId}}"/></td>
+                                <td ><input name="SummeMenge" value="{{this.SummeMenge}} L"/></td>
+                                <td ><input name="SummePreis" value="Fr. {{this.SummePreis}}"/></td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+            </table> 
+          <table class="table" > 
+              <thead class="thead">
+                  <tr>     
+                    <th scope="col">#</th>   
+                    <th scope="col"><a href="?sortBy=Id&sortOrder={{sortOrder}}">Id</a></th>
+                    <th scope="col"><a href="?sortBy=FahrzeugId&sortOrder={{sortOrder}}">Fahrzeugid</a></th>
+                    <th scope="col"><a href="?sortBy=Menge&sortOrder={{sortOrder}}">Menge</a></th>
+                    <th scope="col"><a href="?sortBy=Preis&sortOrder={{sortOrder}}">Preis</a></th>
+                    <th scope="col"><a href="?sortBy=Arbeiter&sortOrder={{sortOrder}}">Arbeitername</a></th>
+                    <th scope="col"><a href="?sortBy=Datum&sortOrder={{sortOrder}}">Datum</a></th>
+                    <th scope="col">#</th>
+                  </tr>
+              </thead> 
+              <tbody class="tbody">
+                <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminfahrzeugetanken">
+                            <tr> 
+                                <td></td>
+                                <td></td>
+                                <td><input name="fahrzeugid"/></td>
+                                <td ><input name="menge"/></td>
+                                <td ><input name="preis"/></td>
+                                <td><input name="arbeitername"/></td>
+                                <td ><input name="datum"/></td>
+                                <td>
+                                    <span class="icon-grid">
+                                         <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                    </span>
+                                </td>
+                            </tr>  
+                    </form> 
+                {{#each rowstanken}} 
+                  <tr>  
+                        <form name="adminform" id="admin-form" method="POST" action="/deleteadminfahrzeugetanken/{{this.Id}}">
+                            <td>
+                                <span class="icon-grid">
+                                    <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                </span>
+                            </td> 
+                        </form>
+                        <form name="adminform" id="admin-form" method="POST" action="/adminfahrzeugetanken/{{this.Id}}">
+                            <td ><input name="id" value="{{this.Id}}" /></td>
+                            <td><input name="fahrzeugid" value="{{this.FahrzeugId}}"/></td>
+                            <td ><input name="menge" value="{{this.Menge}}"/></td>
+                            <td ><input name="preis" value="{{this.Preis}}"/></td>
+                            <td><textarea name="arbeiter"/>{{this.Arbeiter}}</textarea></td>
+                            <td><input name="datum" value="{{this.formatiertes}}"/></td>
+                            <td>
+                              <span class="icon-grid">
+                                <button class="save-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                              </span>
+                            </td>
+                        </form>   
+                    </tr>
+                {{/each}} 
+              </tbody>
+            </table> 
+    </body>
+</html>

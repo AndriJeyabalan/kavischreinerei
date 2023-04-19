@@ -1,0 +1,80 @@
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admintermine</title>
+    <link rel="stylesheet" type="text/css" href="css/adminkunde.css">
+  </head>
+  <body> 
+    <nav class="navbar">
+      <ul>
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/adminstunden">Stunden</a></li>
+        <li><a href="/adminkunden">Kunden</a></li>
+        <li><a href="/adminmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/admintermine">Termine</a></li>
+        <li class="ausgewählt"><a href="/adminpost">Post</a></li>
+        <li><a href="/adminwerkzeug">Werkzeug</a></li>
+        <li><a href="/adminmaterial">Material</a></li>
+        <li><a href="/adminfahrzeuge">Fahrzeuge</a></li>
+        <li><a href="/adminschluessel">Schlüssel</a></li>
+        <li><a href="/adminschule">Schule</a></li>
+        <li><a href="/lieferanten">Lieferanten</a></li>
+        <li><a href="/backup">Backup</a></li>
+      </ul> 
+    </nav> 
+    <nav class="navbar">
+      <ul>
+        <li><a href="/adminpost">Bestellt</a></li>
+        <li><a href="/adminpostrs">Rückstand</a></li>
+        <li class="ausgewählt"><a href="/adminpostja">Entgegengenommen</a></li>
+      </ul>
+    </nav>  
+          <table class="table" >
+              <thead class="thead"> 
+                  <tr>
+                    <th>#</th>
+                    <th scope="col"><a href="?sortBy=Id&sortOrder={{sortOrder}}">Id</a></th> 
+                    <th scope="col"><a href="?sortBy=Kundenname&sortOrder={{sortOrder}}">Kundenname</a></th>
+                    <th scope="col"><a href="?sortBy=Name&sortOrder={{sortOrder}}">Name</a></th>
+                    <th scope="col"><a href="?sortBy=Anzahl&sortOrder={{sortOrder}}">Anzahl</a></th>
+                    <th scope="col"><a href="?sortBy=Notiz&sortOrder={{sortOrder}}">Notiz</a></th>
+                    <th scope="col"><a href="?sortBy=BestelltAm&sortOrder={{sortOrder}}">Bestellt</a></th>
+                    <th scope="col"><a href="?sortBy=EntgegengenommenVon&sortOrder={{sortOrder}}">Genommen von</a></th>
+                    <th scope="col"><a href="?sortBy=EntgegengenommenAm&sortOrder={{sortOrder}}">Am</a></th>
+                    <th scope="col"><a href="?sortBy=Rueckstand&sortOrder={{sortOrder}}">Rückstand</a></th>
+                    <th>#</th>
+                  </tr>
+              </thead> 
+              <tbody class="tbody">
+                  {{#each rows}} 
+                    <tr> 
+                        <form name="adminform" id="admin-form" method="POST" action="/deleteadminpostja/{{this.Id}}">
+                            <td>
+                                <span class="icon-grid">
+                                    <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                </span>
+                            </td> 
+                        </form>
+                        <form name="adminform" id="admin-form" method="POST" action="/alteradminpostja/{{this.Id}}">
+                            <td ><input name="id" value="{{this.Id}}" /></td>
+                            <td><input name="kundenname" value="{{this.Kundenname}}"/></td>
+                            <td ><input name="name" value="{{this.Name}}"/></td>
+                            <td><input name="anzahl" value="{{this.Anzahl}}"/></td>
+                            <td><textarea name="notiz"/>{{this.Notiz}}</textarea></td>
+                            <td><input name="bam" value="{{this.BestelltAm}}"/></td>
+                            <td><input name="evon" value="{{this.EntgegengenommenVon}}"/></td>
+                            <td><input name="eam" value="{{this.EntgegengenommenAm}}"/></td>
+                            <td><input name="rueckstand" value="{{this.Rueckstand}}"/></td>
+                            <td>
+                              <span class="icon-grid">
+                                  <input type="submit" class="bestätigen-btn" value="Bestätigen">
+                              </span> 
+                            </td> 
+                        </form>
+                      </tr>  
+                    {{/each}} 
+                  </tbody>
+            </table> 
+    </body>
+</html>  

@@ -1,0 +1,53 @@
+ /* Define custom styles for mobile devices */
+ @media only screen and (max-width: 3000px) {
+    body {
+      font-size: 16px;
+    }
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+    }
+    .navbar h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+    .logout-btn {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+    }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      margin: 20px;
+    }
+    .icon-grid a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      background-color: #f2f2f2;
+      text-decoration: none;
+      color: black;
+      border-radius: 10px;
+    }
+    .icon-grid a:hover {
+      background-color: #e0e0e0;
+    }
+    .icon-grid img {
+      height: 50px;
+      margin-bottom: 10px;
+    }
+  }

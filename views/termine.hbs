@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Termine</title>
+    <link rel="stylesheet" type="text/css" href="css/termine.css">
+  </head>
+  <body>
+    <div class="navbar">
+       <a href="/index" class="back-button">
+        <img src="images/back-arrow.png" alt="Zurück" />
+      </a> 
+      <h1>Termine</h1>
+    </div>
+    <form method="POST" action="/addtermine">
+          <div class="form-group">
+                <label for="date">Datum:</label>
+                <input type="date" id="datum" name="datum" title="Bitte geben Sie das Datum ein" pattern="\d{4}-\d{2}-\d{2}" required />
+            </div>
+
+
+            <div class="form-group">
+                    <label for="client">Zeit:</label>
+                    <input type="time" id="dateto"  name="dateto" title="Bitte geben Sie die Zeit ein" required  />
+                    <div id="client-suggestions"></div>
+                </div>
+
+            <div class="form-group">
+                <label for="arbeit">Notizen:</label>
+                <textarea type="text" id="notiz" name="notiz" title="Bitte geben Sie an, was Sie gemacht haben" required /></textarea>
+            </div>
+            <input type="submit" value="Eintragen" class="erstellen-btn"/>
+      </form>
+    {{#each rows}}
+        <form name="auftragform" id="auftrag-form" method="POST" action="/edittermine/{{this.Id}}">
+            <div class="card"> 
+                <div class="card-header">
+                <h2 class="card-title kurzbezeichnung">{{this.formattedDate}}</h2><p class="card-title status">{{this.Zeit}}</p>
+                <a href="/edittermine/{{this.Id}}" class="icon" aria-label="Bearbeiten">
+                    <img src="/images/bearbeiten-icon.png" alt="Bearbeiten"> 
+                </a>
+                </div>
+                <div class="card-body">
+                <p class="card-text beschrieb">{{this.Notiz}}</p>
+                </div>
+                <div class="card-footer">
+                <input type="submit" value="Erledigt" id="auswählen-btn" name="action" class="auswählen-btn" />
+                </div>
+            </div>
+        </form>
+    {{/each}} 
+  </body>
+
+</html>

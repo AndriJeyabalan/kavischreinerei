@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>editWerkzeugArosa</title>
+    <link rel="stylesheet" type="text/css" href="../css/werkzeug.css">
+  </head>
+  <body>
+
+     <div class="navbar">
+       <a href="/editwerkzeug/{{rowswerkzeug.Id}}" class="back-button">
+        <img src="../images/back-arrow.png" alt=" Zurück" />
+      </a>
+      <h1>{{rowswerkzeug.Name}}</h1>
+    </div>
+
+    <form method="POST" action="/editwerkzeugarosaeintrag/{{rowswerkzeug.Id}}">
+      <div>
+      <label for="aufenthaltsort">Ort/Name:</label>
+          <p>{{rows.Werkzeugarosa}}</p> 
+          <input id="Werkzeugarosa" type="hidden" name="Werkzeugarosa" value="{{rows.Werkzeugarosa}}" />
+      </div>
+
+      <div> 
+      <label for="notiz">Notiz:</label>
+          <textarea type="text" id="Notiz" name="notiz" title="Bitte geben Sie eine neue Notiz ein">{{rows.Notiz}}</textarea>
+      </div> 
+         <div class="kundenname"><input type="text" id="kundenname-input" name="Werkzeugkunde" placeholder="Kundenname"></div>
+     <div>
+      <select class="action-select" id="aktion-select" name="aktion-select" title="Wählen Sie den Ort für des Werkzeugs aus" onchange="showKundennameInput()">
+        <option value="werkzeugmitarbeiter" selected>Zu mir</option>
+        <option value="werkzeugarosa">Arosa</option>
+        <option value="werkzeugpeist">Peist</option>
+        <option value="werkzeugkunde">Kunde</option>
+      </select>
+      <input type="hidden" name="Werkzeugpeist" value="{{rows.Werkzeugpeist}}" />
+      <input type="hidden" name="Werkzeugmitarbeiter" value="{{rows.Werkzeugmitarbeiter}}" />
+      <input type="hidden" name="id" value="{{rows.Id}}" />
+      <input type="submit" value="Nehmen/Geben" id="nehmen-btn" name="action" class="nehmen-btn" />
+    </div>
+   </form>
+ 
+  </body> 
+  <script>
+    function showKundennameInput() {
+      var select = document.getElementById("aktion-select");
+      var input = document.getElementById("kundenname-input");
+      if (select.value === "werkzeugkunde") {
+        input.style.display = "block";
+      } else {
+        input.style.display = "none";
+      }
+    }
+  </script>
+</html>  

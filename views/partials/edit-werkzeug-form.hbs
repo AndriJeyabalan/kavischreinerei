@@ -1,0 +1,173 @@
+<div class="head">
+  <h2>{{rows.Bezeichnung}}</h2>
+</div>
+
+<div class="input-group" id="anzahl-mitarbeiter">
+  <p class="überschriftp">Anzahl Mitarbeiter:</p>
+  <div class="text-field-container">
+    <p name="anzahlMitarbeiter">{{rows.AnzahlMitarbeiter}}</p>
+  </div>
+</div>
+<div class="hide" id="mitarbeiter-data">
+  {{#if hasMitarbeiterData}}
+      {{#each rowsMitarbeiter}}   
+      <form name="mitarbeiterform" id="miratbeiter-form" method="POST" action="/editwerkzeugmitarbeiter/{{Id}}">
+          <div class="farbspiel mitarbeitereintrag" data-mitarbeiter-id="{{Id}}">
+            {{#if ../mitarbeiterData}}
+              {{#if ../mitarbeiterData.Werkzeugmitarbeiter}}
+                <div class="input-group">
+                  <p class="überschriftp">Mitarbeiter:</p>
+                  <p name="werkzeugmitarbeiter">{{Werkzeugmitarbeiter}}</p>
+                </div>
+              {{/if}}
+              {{#if ../mitarbeiterData.Notiz}}
+                <div class="input-group">
+                  <p class="überschriftp">Notiz:</p>
+                  <p name="notiz">{{Notiz}}</p>
+                </div>
+              {{/if}}
+              {{else}}          
+            {{/if}}
+          </div>
+          <div class="button-containera">
+                <input type="hidden" name="id" value="{{rows.Id}}" />
+                <input type="submit" value="Auswählen" id="auswählen-btn" name="action" class="auswählen-btn" />
+            </div>
+        </form>
+      {{/each}}
+  {{/if}}
+</div>
+
+<div class="input-group" id="anzahl-arosa">
+  <p class="überschriftp" >Anzahl Arosa:</p>
+  <div class="text-field-container">
+    <p name="anzahlArosa">{{rows.AnzahlArosa}}</p>
+  </div>
+</div>
+<div class="hide" id="arosa-data">
+  {{#if hasArosaData}}
+      {{#each rowsArosa}}
+        <form name="arosaform" id="arosa-form" method="POST" action="/editwerkzeugarosa/{{Id}}">
+          <div class="farbspiel arosaeintrag" data-arosa-id="{{Id}}">
+            {{#if ../arosaData}}
+              {{#if ../arosaData.Werkzeugarosa}}
+                <div class="input-group">
+                  <p class="überschriftp">Ort: </p>
+                  <p name="werkzeugarosa">{{Werkzeugarosa}}</p>
+                </div>
+              {{/if}}
+              {{#if ../arosaData.Notiz}}
+                <div class="input-group">
+                  <p class="überschriftp">Notiz:</p>
+                  <p name="notiz">{{Notiz}}</p>
+                </div>
+              {{/if}}
+            {{else}}          
+          {{/if}}
+          </div>
+          <div class="button-containera">
+                <input type="hidden" name="id" value="{{rows.Id}}" />
+                <input type="submit" value="Auswählen" id="auswählen-btn" name="action" class="auswählen-btn" />
+          </div>
+        </form>
+      {{/each}}
+  {{/if}}
+</div>
+
+<div class="input-group" id="anzahl-peist">
+  <p class="überschriftp" >Anzahl Peist:</p>
+  <div class="text-field-container">
+    <p name="anzahlPeist">{{rows.AnzahlPeist}}</p>
+  </div>
+</div>
+<div class="hide" id="peist-data">
+  {{#if hasPeistData}}
+      {{#each rowsPeist}}
+        <form name="peistform" id="peist-form" method="POST" action="/editwerkzeugpeist/{{Id}}">
+          <div class="farbspiel peisteintrag" data-peist-id="{{Id}}">
+              {{#if ../peistData}}
+                {{#if ../peistData.Werkzeugpeist}}
+                <div class="input-group">
+                <p class="überschriftp">Ort: </p>
+                <p name="werkzeugpeist">{{Werkzeugpeist}}</p>
+              </div>
+              {{/if}}
+              {{#if ../peistData.Notiz}}
+                <div class="input-group">
+                  <p class="überschriftp">Notiz:</p>
+                  <p name="notiz">{{Notiz}}</p>
+                </div>
+              {{/if}}
+            {{/if}}
+          </div>
+          <div class="button-containera">
+                  <input type="hidden" name="id" value="{{rows.Id}}" />
+                  <input type="submit" value="Auswählen" id="auswählen-btn" name="action" class="auswählen-btn" />
+          </div>
+      </form>
+    {{/each}}
+  {{/if}}
+</div>
+
+<div class="input-group" id="anzahl-kunden">
+  <p class="überschriftp">Anzahl Kunden:</p>
+  <div class="text-field-container">
+    <p name="anzahlKunden">{{rows.AnzahlKunden}}</p>
+  </div>
+</div>
+<div class="hide" id="kunden-data">
+  {{#if hasKundeData}} 
+    {{#each rowsKunde}}
+      <form name="kundeform" id="kunde-form" method="POST" action="/editwerkzeugkunde/{{Id}}">
+          <div class="farbspiel kundeeintrag" data-kunde-id="{{Id}}">
+            {{#if ../kundeData}}
+              {{#if ../kundeData.Werkzeugkunde}}
+                <div class="input-group">
+                  <p class="überschriftp">Kunde:</p>
+                  <p name="werkzeugkunde">{{Werkzeugkunde}}</p>
+                </div>
+              {{/if}}
+              {{#if ../kundeData.Notiz}}
+                <div class="input-group">
+                  <p class="überschriftp">Notiz:</p>
+                  <p name="notiz">{{Notiz}}</p>
+                </div>
+              {{/if}}
+            {{/if}}
+          </div>
+          <div class="button-containera">
+                  <input type="hidden" name="id" value="{{rows.Id}}" />
+                  <input type="submit" value="Auswählen" id="auswählen-btn" name="action" class="auswählen-btn" />
+          </div>
+      </form>
+    {{/each}}
+  {{/if}}
+</div> 
+
+<script>
+
+const peistData = document.getElementById("peist-data");
+const anzahlPeist = document.getElementById("anzahl-peist");
+anzahlPeist.addEventListener("click", function() {
+  peistData.classList.toggle("hide");
+});
+
+const anzahlArosa = document.querySelector("#anzahl-arosa");
+const arosaData = document.querySelector("#arosa-data");
+anzahlArosa.addEventListener("click", function() {
+  arosaData.classList.toggle("hide");
+});
+
+const anzahlMitarbeiter = document.querySelector("#anzahl-mitarbeiter");
+const mitarbeiterData = document.querySelector("#mitarbeiter-data");
+anzahlMitarbeiter.addEventListener("click", function() {
+  mitarbeiterData.classList.toggle("hide");
+});
+
+const anzahlKunden = document.querySelector("#anzahl-kunden");
+const kundenData = document.querySelector("#kunden-data");  
+anzahlKunden.addEventListener("click", function() {
+  kundenData.classList.toggle("hide");
+});
+
+</script>                  

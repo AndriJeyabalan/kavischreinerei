@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <title>edit-schule</title>
+   
+    <link rel="stylesheet" type="text/css" href="../css/schule.css">
+  </head>
+  <body>
+     <div class="navbar">
+  <a href="/schule" class="back-button">
+    <img src="../images/back-arrow.png" alt="Zurück" />
+  </a>
+  <h1> {{rows.Kurzbezeichnung}}</h1>
+  </div>
+        <div class="info-container">
+            <div class="zusammen">
+                <p class="titel">Material und Werkzeug:</p>
+                <p class="info">{{rows.Material_Werkzeug}} </p>
+            </div>
+            <div class="zusammen">
+                <p class="titel">Beschrieb:</p>
+                <p class="info">{{rows.Beschrieb}}</p> 
+            </div>
+        </div>
+  </body>
+</html>

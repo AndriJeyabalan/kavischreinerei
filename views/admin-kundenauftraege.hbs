@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>adminkundenaufträge</title>
+    <link rel="stylesheet" type="text/css" href="../css/adminkundeauftrag.css">
+  </head>
+  <body>  
+            <nav class="navbar">
+              <ul>
+                <li class="ausgewählt"><a href="/adminkunden">Zurück zu Kunden</a></li>
+                {{#each rowsKunde}}
+                <li class="ueberschrift">Kunde: {{this.Vorname}} {{this.Nachname}}</li>   
+                <li><a href="/adminkundendruck/{{this.id}}">Druckansicht</a></li>         
+                <li class="rechts"><a href="/adminkundenfoto/{{this.id}}">Fotos</a></li> 
+                {{/each}} 
+              </ul>
+            </nav>  
+        <div class="tabellencontainer"> 
+          <div class="sidetable">
+            <form name="adminform" id="admin-form" method="POST" action="/saveadminkundenauftrageintrag">
+            <div class="titel">
+                <input type="text" id="kurzbezeichnung" name="kurzbezeichnung" placeholder="Kurzbezeichnung" />
+                <input type="text" id="offeriert" name="offeriert" placeholder="Offertenpreis" />
+            </div>    
+                <select name="status" id="status-select" title="Statusanzeige auswählen">
+                      <option value="Offen">Offen</option>
+                      <option value="Erledigt">Erledigt</option>          
+                </select>
+                <input type="hidden" name="id" value="{{this.id}}" />
+                <textarea name="beschrieb" placeholder="Beschrieb"/></textarea>
+                <input type="submit" value="Speichern" id="auswählen-btn" name="action" class="speichern-btn" />         
+            </form> 
+            {{#each rows}}  
+              <form name="adminform" id="admin-form" method="POST" action="/updateadminkundenauftrageintrag"> 
+                <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">
+                        <p>{{this.Id}}</p> 
+                          <input type="text" class="kurzbezeichnung" name="kurzbezeichnung" value="{{this.Kurzbezeichnung}}" />
+                          <select name="status" class="status" id="status-select" title="Statusanzeige auswählen">
+                                <option value="{{this.Status}}">{{this.Status}}</option>
+                                <option value="Erledigt">Erledigt</option>
+                                <option value="Offen">Offen</option>
+                          </select>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text beschrieb"><textarea name="beschrieb"/>{{this.Beschrieb}}</textarea></p>
+                      <input type="hidden" name="id" value="{{this.Id}}" />
+                      <input type="hidden" name="kundenid" value="{{this.KundenId}}" />
+                    </div>
+                    <div class="datencontainer">
+                      <p class="stunden">{{this.GesamtStunden}}h</p>
+                      <p class="verrechnet">für Fr. {{this.GesamtVerrechnet}}  gearbeitet</p>
+                      <p class="offeriert">Für <input type="text" class="offeriert" name="offeriert" value="{{this.Offertensumme}}" />offeriert</p>
+                    </div>
+                    <div class="card-footer">
+                    <input type="submit" value="Ändern" id="auswählen-btn" name="action" class="auswählen-btn" />
+                    <input type="submit" value="Löschen" id="löschen-btn" name="action" class="löschen-btn" />
+                    </div> 
+                </div> 
+              </form>
+            {{/each}}                   
+          </div>
+           <div class="sidetable">
+               <form class="filter-form">
+                        <select id="filter-type" name="filter-type" title="Wählen Sie den Typ des Werkzeugs aus">
+                            <option value="" disabled selected>Filtern</option>
+                            <option value="NULL" >Keine AuftragsId</option>
+                            <option value="NOT">Eingetragene AuftragsId</option>
+                        </select> 
+                        <button class="such-btn" type="submit">Filtern</button>
+                </form>
+              {{#each rowsStunden}}  
+                <form name="adminform" id="admin-form" method="POST" action="/stundezuordnen/{{this.Id}}"> 
+                  <div class="card">
+                      <div class="card-header">
+                        <div class="card-title">
+                            <input type="text" name="auftragsid" value="{{this.AuftragsId}}" placeholder="AuftragsId:" style="width: 100px;" required/>
+                            <input type="text" name="arbeitername" value="{{this.Arbeitername}}" />
+                            <input type="text" name="stunden" value="{{this.Stunden}}" style="width: 80px;"/><p> h</p> 
+                            <input type="text" name="verrechnet" value="{{this.Verrechnet}}" style="width: 90px;"/><p> Fr.</p> 
+                            <input type="text" name="datum" value="{{this.Datum}}" />
+                        </div>
+                      </div>
+                      <div class="card-body">
+                      <p class="card-text beschrieb"><textarea name="beschrieb"/>{{this.Erledigte_Arbeit}}</textarea></p>
+                      <input type="hidden" name="id" value="{{this.Id}}" />
+                      <input type="hidden" name="kundenid" value="{{this.KundenId}}" />
+                      </div>
+                      <div class="card-footer">
+                      <input type="submit" value="Zuordnen" id="zuordnen-btn" name="action" class="zuordnen-btn" />
+                      </div>
+                  </div> 
+                </form>
+              {{/each}}  
+           </div>
+        </div>
+    </body>   
+</html>        

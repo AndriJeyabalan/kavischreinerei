@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>adminkundenaufträge</title>
+    <link rel="stylesheet" type="text/css" href="../css/admindruck.css">
+  </head>
+  <body>  
+        <nav class="navbar">
+            <ul>
+              {{#each rowskunden}}
+                <li class="ausgewählt"><a href="/kundenauftraege/{{this.id}}">Zurück zu Kunden</a></li>
+                {{/each}}
+            </ul>
+        </nav>
+         {{#each rowskunden}}
+                <h3>{{this.Vorname}} {{this.Nachname}}</h3>
+        {{/each}}
+        <table class="table">
+          <thead>
+                <tr>
+                    <th>AuftragsId</th> 
+                    <th>Arbeitername</th>
+                    <th colspan="2">Beschrieb</th> 
+                    <th>Offertenpreis</th>
+              </tr>
+          </thead>
+          <tbody>
+              {{#each rowsauftrag}}
+              <tr>
+                  <td><input value="{{this.Id}}"/></td>
+                  <td><input value="{{this.Kurzbezeichnung}}"/></td>
+                  <td colspan="2"><input value="{{this.Beschrieb}}"/></td>  
+                  <td><input value="Fr. {{this.Offertensumme}}"/></td>
+              </tr>
+              {{/each}}
+              <thead> 
+                 <tr>
+                    <th>AuftragsId</th> 
+                    <th>Arbeitername</th>
+                    <th>Beschrieb</th> 
+                    <th>Stunden</th>  
+                    <th>Datum</th>
+                  </tr>
+              </thead>
+              {{#each rows}}  
+                {{#if showSumRow}}
+                  <tr class="stundensumme">
+                    <td colspan="5" class="gesammt"> <input value="{{totalHours}} Stunden"/></td>
+                  </tr>
+                {{else}}
+              <tr>
+                  <td><input value="{{this.AuftragsId}}"/></td> 
+                  <td><input value="{{this.Arbeitername}}"/></td>
+                  <td><input value="{{this.Erledigte_Arbeit}}"/></td>
+                  <td><input value="{{this.Stunden}} Std."/></td> 
+                  <td><input value="{{this.Datum}}"/></td>
+              </tr>
+               {{/if}} 
+              {{/each}}
+              {{#each rowsausgabe}}  
+              <tr>
+                  <td>Nicht Zugeordnet</td> 
+                  <td><input value="{{this.Arbeitername}}"/></td>
+                  <td><input value="{{this.Erledigte_Arbeit}}"/></td>
+                  <td><input value="{{this.Stunden}} Std."/></td> 
+                  <td><input value="{{this.Datum}}"/></td>
+              </tr>
+
+              {{/each}}
+              {{#each rowsstunden}}
+                  <tr class="stundensumme">
+                    <td colspan="5" class="gesammt"><input value="{{this.Gesamtstunden}} Stunden"/></td>
+                  </tr>
+              {{/each}}
+          </tbody>
+       </table>
+    </body>   
+</html>      

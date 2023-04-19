@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>editkunde</title>
+   
+    <link rel="stylesheet" type="text/css" href="../css/kunde.css">
+  </head>
+  <body>
+     <div class="navbar">
+  <a href="/kunden" class="back-button">
+    <img src="../images/back-arrow.png" alt="Zurück" />
+  </a>
+  <h1> {{rows.Vorname}} {{rows.Nachname}}</h1>
+  </div>
+    <div class="info-container">
+     <p class="info">{{rows.Strasse}} {{rows.Hausnummer}} </p> 
+     <p class="info" >{{rows.Haus}}</p>
+     <p class="info">{{rows.PLZ}} {{rows.Ort}}</p>
+     <p class="info">Tel: {{rows.Telefonnummer}}</p>
+     <p class="info">Ende: {{rows.Ende}}</p>
+    </div> 
+    <div class="foto" onclick="toggleAusgabe()">
+        Fotos Anzeigen
+    </div>
+    <div class="ausgabe hidden">
+       {{#each rowsform}}    
+          <div class="foto-container">           
+              <img src="{{this.fotos}}" class="fotos"/> 
+          </div>
+        {{/each}}
+    </div> 
+    <div class="container">
+        {{> edit-kunde-form}} 
+    </div>
+  </body>
+  <script>
+const fotos = document.querySelectorAll('.fotos');
+
+fotos.forEach(foto => {
+  foto.addEventListener('click', () => {
+    // Wenn die Klasse "foto-fullscreen" vorhanden ist, wird sie entfernt, andernfalls wird sie hinzugefügt
+    foto.classList.toggle('foto-fullscreen');
+  });
+});
+function toggleAusgabe() {
+  var ausgabe = document.querySelector('.ausgabe');
+  ausgabe.classList.toggle('hidden');
+}
+  </script>
+</html>
+ 

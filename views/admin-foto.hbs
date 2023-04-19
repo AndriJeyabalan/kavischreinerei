@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="../css/adminkundenfoto.css">
+  </head>
+  <body>
+        <nav class="navbar">
+        <ul>
+            <li  class="ausgewählt"><a href="/kundenauftraege/{{this.kundenid}}">Zurück zum Kunden</a></li>
+        </ul>
+        </nav> 
+        {{#if rowsform}}  
+            {{#each rowsform}}  
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <label for="photo">Foto:</label>
+                    <input type="file" name="photo" accept="image/*" required><br><br>
+                    <input type="submit" value="Hochladen">
+                    <input type="hidden" name="id" value="{{this.kunden_id}}"/>
+                </form>
+            {{/each}}
+        {{else}}  
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <label for="photo">Foto:</label>
+                    <input type="file" name="photo" accept="image/*" required><br><br>
+                    <input type="submit" value="Hochladen">
+                    <input type="hidden" name="id" value="{{this.kundenid}}"/>
+                </form>
+        {{/if}}
+        <div class="foto-container">
+            {{#each rows}}  
+            <div class="container">   
+                <div class="foto">           
+                    <img src="{{this.fotos}}"/> 
+                </div> 
+                <form name="adminform" method="POST" action="/deleteadminkundenfoto/{{this.id}}">
+                <div class="icon">
+                    <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                </div>
+                </form>  
+            </div>
+            {{/each}}
+        </div>
+    </body>
+</html>

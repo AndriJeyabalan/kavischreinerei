@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Werkzeug eintragen</title>
+    <link rel="stylesheet" type="text/css" href="css/werkzeug.css">
+  </head>
+  <body>
+    <div class="navbar">
+       <a href="/index" class="back-button">
+        <img src="images/back-arrow.png" alt="Zurück" />
+      </a>
+      <h1>Werkzeuge</h1>
+    </div>
+
+    <form class="filter-form">
+        <div class="search-container">
+            <input type="text" placeholder="Suchen" name="search">
+        </div>
+        <div class="filter-container">
+            <select id="tool-type" name="tool-type" title="Wählen Sie den Typ des Werkzeugs aus">
+                <option value="" disabled selected>Filtern</option>
+                <option value="kleinmaschinen">Kleinmaschinen</option>
+                <option value="werkzeug">Werkzeug</option>
+                <option value="maschinenzubehoer">Maschinenzubehör</option>
+                <option value="stationaere_maschinen">Stationäre Maschinen</option>
+                <option value="andere">Andere</option>
+            </select>
+            <button type="submit">Filtern/Suchen</button>
+        </div>
+    </form>
+ 
+    <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" >id</th> 
+            <th scope="col">Name</th>
+            <th scope="col">#</th>
+        </tr>
+    </thead>
+     <tbody>
+        {{#each rows}}
+        <tr>
+            <td >{{this.Id}}</td>
+            <td>{{this.Name}}</td>
+            <td>
+                <span class="icon-grid">
+                    <a href="/editwerkzeug/{{this.Id}}" class="icon" aria-label="Bearbeiten">
+                    <img src="/images/bearbeiten-icon.png" alt="Bearbeiten"> 
+                    </a>
+                </span>
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+       </table>
+
+
+  </body>
+
+</html>

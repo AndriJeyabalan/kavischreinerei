@@ -1,0 +1,89 @@
+<div class="head">
+  <h2>{{rows.Bezeichnung}}</h2>
+</div>
+ 
+<div class="input-group" id="anzahl-arosa">
+  <p class="überschriftp" >Anzahl Arosa:</p>
+  <div class="text-field-container">
+    <p name="anzahlArosa">{{rows.AnzahlArosa}}</p>
+  </div> 
+</div>
+<div class="hide" id="arosa-data">
+  {{#if hasArosaData}}
+      {{#each rowsArosa}}
+        <form name="arosaform" id="arosa-form" method="POST" action="/editmaterialarosa/{{Id}}">
+          <div class="farbspiel arosaeintrag" data-arosa-id="{{Id}}">
+            {{#if ../arosaData}}
+              {{#if ../arosaData.Aufenthaltsort}}
+                <div class="input-group">
+                  <p class="überschriftp">Ort: </p>
+                  <p name="aufenthaltsort">{{Aufenthaltsort}}</p>
+                </div>
+              {{/if}}
+              {{#if ../arosaData.Notiz}}
+                <div class="input-group">
+                  <p class="überschriftp">Notiz:</p>
+                  <p name="notiz">{{Notiz}}</p>
+                </div>
+              {{/if}}
+            {{else}}          
+          {{/if}}
+          </div>
+          <div class="button-containera">
+                <input type="hidden" name="id" value="{{rows.Id}}" />
+                <input type="submit" value="Auswählen" id="auswählen-btn" name="action" class="auswählen-btn" />
+          </div>
+        </form>
+      {{/each}}
+  {{/if}}
+</div>
+
+<div class="input-group" id="anzahl-peist">
+  <p class="überschriftp" >Anzahl Peist:</p>
+  <div class="text-field-container">
+    <p name="anzahlPeist">{{rows.AnzahlPeist}}</p>
+  </div>
+</div>
+<div class="hide" id="peist-data">
+  {{#if hasPeistData}}
+      {{#each rowsPeist}}
+        <form name="peistform" id="peist-form" method="POST" action="/editmaterialpeist/{{Id}}">
+          <div class="farbspiel peisteintrag" data-peist-id="{{Id}}">
+              {{#if ../peistData}}
+                {{#if ../peistData.Aufenthaltsort}}
+                <div class="input-group">
+                <p class="überschriftp">Ort: </p>
+                <p name="aufenthaltsort">{{Aufenthaltsort}}</p>
+              </div>
+              {{/if}}
+              {{#if ../peistData.Notiz}}
+                <div class="input-group">
+                  <p class="überschriftp">Notiz:</p>
+                  <p name="notiz">{{Notiz}}</p>
+                </div>
+              {{/if}}
+              <div class="button-containera">
+                <input type="hidden" name="id" value="{{rows.Id}}" />
+                <input type="submit" value="Auswählen" id="auswählen-btn" name="action" class="auswählen-btn" />
+              </div>
+              {{else}}          
+              {{/if}}
+            </div>
+        </form>
+      {{/each}}
+  {{/if}}
+</div>
+
+<script>
+  const peistData = document.getElementById("peist-data");
+const anzahlPeist = document.getElementById("anzahl-peist");
+anzahlPeist.addEventListener("click", function() {
+  peistData.classList.toggle("hide");
+});
+
+const anzahlArosa = document.querySelector("#anzahl-arosa");
+const arosaData = document.querySelector("#arosa-data");
+anzahlArosa.addEventListener("click", function() {
+  arosaData.classList.toggle("hide");
+});
+</script>               

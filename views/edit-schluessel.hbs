@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>edit-schluessel</title>
+   
+    <link rel="stylesheet" type="text/css" href="../css/schluessel.css">
+  </head>
+  <body>
+     <div class="navbar">
+  <a href="/schluessel" class="back-button">
+    <img src="../images/back-arrow.png" alt="Zurück" />
+  </a>
+  <h1> {{rows.Vorname}} {{rows.Nachname}}</h1>
+  </div>
+     <form name="zurückgeben" id="zurückgeben-form" method="POST" action="/schluesselzurueckgeben/{{rows.Id}}">
+        <input type="hidden" name="id" value="{{rows.Id}}" />
+        <input type="submit" value="Zurückgeben" id="auswählen-btn" name="action" class="zurückgeben-btn" />
+        <div class="info-container">
+            <p class="titel">Code:</p>
+            <p class="info">{{rows.Code}}</p> 
+            <p class="titel">Entgegengenommen von:</p>
+            <p class="info">{{rows.Entgegengenommen}} </p>
+        </div>
+    </form>
+    <div class="container">
+        {{> edit-schluessel-form}} 
+    </div>
+  </body>
+</html>

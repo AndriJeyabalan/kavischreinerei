@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Adminkunde</title>
+    <link rel="stylesheet" type="text/css" href="css/adminkunde.css">
+  </head>
+  <body> 
+    <nav class="navbar">
+      <ul>
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/adminstunden">Stunden</a></li>
+        <li class="ausgewählt"><a href="/adminkunden">Kunden</a></li>
+        <li><a href="/adminmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/admintermine">Termine</a></li>
+        <li><a href="/adminpost">Post</a></li>
+        <li><a href="/adminwerkzeug">Werkzeug</a></li>
+        <li><a href="/adminmaterial">Material</a></li>
+        <li><a href="/adminfahrzeuge">Fahrzeuge</a></li>
+        <li><a href="/adminschluessel">Schlüssel</a></li>
+        <li><a href="/adminschule">Schule</a></li>
+        <li><a href="/lieferanten">Lieferanten</a></li>
+        <li><a href="/backup">Backup</a></li>
+      </ul>
+    </nav>
+          <form class="filter-form">
+                <div class="search-container">
+                    <input class="suchen" type="text" placeholder="Suchen" name="search">
+                </div>
+                      <div class="filter-container">
+                    <select id="filter-type" name="filter-type" title="Wählen Sie den Status aus">
+                        <option value="" disabled selected>Filtern</option>
+                        <option value="Ausstehend">Ausstehend</option>
+                        <option value="Laufend">Laufend</option>
+                        <option value="Fertig">Fertig</option>
+                    </select>
+                    <button type="submit">Filtern/Suchen</button>
+                </div>
+            </form>
+          <table class="table" >
+              <thead class="thead">
+                  <tr>
+                    <th>#</th>
+                    <th scope="col"><a href="?sortBy=id&sortOrder={{sortOrder}}">id</a></th> 
+                    <th scope="col"><a href="?sortBy=Vorname&sortOrder={{sortOrder}}">Vorname</a></th>
+                    <th scope="col"><a href="?sortBy=Nachname&sortOrder={{sortOrder}}">Nachname</a></th>
+                    <th scope="col"><a href="?sortBy=Strasse&sortOrder={{sortOrder}}">Strasse</a></th>
+                    <th scope="col"><a href="?sortBy=Hausnummer&sortOrder={{sortOrder}}">Hausnummer</a></th>
+                    <th scope="col"><a href="?sortBy=Haus&sortOrder={{sortOrder}}">Haus</a></th>
+                    <th scope="col"><a href="?sortBy=PLZ&sortOrder={{sortOrder}}">PLZ</a></th>
+                    <th scope="col"><a href="?sortBy=Ort&sortOrder={{sortOrder}}">Ort</a></th>
+                    <th scope="col"><a href="?sortBy=Telefonnummer&sortOrder={{sortOrder}}">Telefon</a></th>
+                    <th scope="col"><a href="?sortBy=Ende&sortOrder={{sortOrder}}">Ende</a></th>
+                    <th scope="col"><a href="?sortBy=Status&sortOrder={{sortOrder}}">Status</a></th>
+                    <th>#</th>
+                    <th>#</th>
+                  </tr>
+              </thead> 
+              <tbody class="tbody">
+                <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminkunden">
+                            <tr> 
+                                <td></td>
+                                <td ><input name="id"/></td>
+                                <td><input name="vorname"/></td>
+                                <td ><input name="nachname"/></td>
+                                <td ><input name="strasse"/></td>
+                                <td><input name="hausnummer"/></td>
+                                <td ><input name="haus"/></td>
+                                <td><input name="plz"/></td>
+                                <td><input name="ort"/></td>
+                                <td><input name="telefonnummer"/></td>
+                                <td><input name="ende"/></td>
+                                <td>             
+                                  <select name="status" id="status-select" title="Statusanzeige auswählen">
+                                     <option value="Ausstehend">Ausstehend</option>
+                                      <option value="Laufend">Laufend</option>
+                                      <option value="Fertig">Fertig</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <span class="icon-grid">
+                                         <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                    </span>
+                                </td>
+                                <td></td>
+                            </tr>  
+                    </form>  
+                  {{#each rows}} 
+                    <tr> 
+                        <form name="adminform" id="admin-form" method="POST" action="/deleteadminkunden/{{this.id}}">
+                            <td>
+                                <span class="icon-grid">
+                                    <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                </span>
+                            </td> 
+                        </form>
+                        <form name="adminform" id="admin-form" method="POST" action="/adminkunden/{{this.id}}">
+                            <td ><input name="id" value="{{this.id}}" /></td>
+                            <td><input name="vorname" value="{{this.Vorname}}"/></td>
+                            <td ><input name="nachname" value="{{this.Nachname}}"/></td>
+                            <td><textarea name="strasse"/>{{this.Strasse}}</textarea></td>
+                            <td><input name="hausnummer" value="{{this.Hausnummer}}"/></td>
+                            <td ><input name="haus" value="{{this.Haus}}"/></td>
+                            <td><input name="plz" value="{{this.PLZ}}"/></td>
+                            <td><input name="ort" value="{{this.Ort}}"/></td>
+                            <td><input name="telefonnummer" value="{{this.Telefonnummer}}"/></td>
+                            <td><input name="ende" value="{{this.Ende}}"/></td>
+                            <td>
+                              <select name="status" id="status-select" title="Statusanzeige auswählen">
+                                  <option value="{{this.Status}}">{{this.Status}}</option>
+                                  <option value="Ausstehend">Ausstehend</option>
+                                  <option value="Laufend">Laufend</option>
+                                  <option value="Fertig">Fertig</option>
+                              </select>
+                            </td>
+                            <td>
+                              <span class="icon-grid">
+                                  <input type="submit" class="bestätigen-btn" value="Bestätigen">
+                              </span> 
+                            </td> 
+                        </form>
+                        <form name="adminform" method="POST" action="/kundenauftraege/{{this.id}}">
+                            <td>
+                                <span class="icon-grid">
+                                    <button class="anschauen-btn" type="submit"><img src="../images/bearbeiten-icon.png"></button>
+                                </span>
+                            </td>
+                        </form>
+                      </tr>  
+                    {{/each}}
+                  </tbody>
+            </table> 
+    </body>
+</html>  

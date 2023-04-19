@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Stunden eintragen</title>
+    <link rel="stylesheet" type="text/css" href="css/stunden.css">
+  </head>
+  <body>
+    <div class="navbar">
+       <a href="/index" class="back-button">
+        <img src="images/back-arrow.png" alt="Zurück" />
+      </a>
+      <h1>Stundenkarte</h1>
+    </div>
+    <form class="row g-3 needs-validation" method="POST" action="/addstunden" >
+        {{> add-stunden-form}} 
+    </form>
+
+   <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="hide">#</th> <!-- Id wird versteckt -->
+            
+            <th scope="col">Kunde</th>
+            <th scope="col">Datum</th>
+            <th scope="col">#</th>
+        </tr>
+    </thead> 
+    <tbody>
+        {{#each rows}}
+  {{#if showSumRow}}
+    <tr class="stundensumme">
+      <td></td>
+      <td colspan="3">{{this.wochentag}}:  {{this.totalHours}} Stunden.</td>
+    </tr>
+  {{else}}
+    <tr>
+      <td class="hide">{{this.Id}}</td>
+      <td>{{this.Kundenname}}</td>
+      <td>{{this.formatted}}</td>
+      <td>
+        <span class="icon-grid">
+          <a href="/editstunden/{{this.Id}}" class="icon" aria-label="Bearbeiten">
+            <img src="/images/bearbeiten-icon.png" alt="Bearbeiten"> 
+          </a>
+        </span>
+      </td>
+    </tr>
+  {{/if}} 
+{{/each}}
+      </tbody>
+    </table>
+  </body>
+
+          <script>
+
+    const clientInput = document.querySelector('#kunde');
+const clientSuggestions = document.querySelector('#client-suggestions');
+
+clientInput.addEventListener('input', (event) => {
+  const searchTerm = event.target.value;
+
+  if (searchTerm.length > 0) {
+    fetch(`/api/kunden?q=${searchTerm}`)
+      .then(response => response.json())
+      .then(data => {
+        clientSuggestions.innerHTML = '';
+
+        data.forEach(kunde => {
+          const suggestion = document.createElement('div');
+          suggestion.classList.add('suggestion');
+          suggestion.innerText = kunde.Vorname + " " + kunde.Nachname;
+          suggestion.addEventListener('click', () => {
+            clientInput.value = kunde.Vorname + " " + kunde.Nachname;
+            clientSuggestions.innerHTML = '';
+          });
+          clientSuggestions.appendChild(suggestion);
+        });
+      });
+  } else {
+    clientSuggestions.innerHTML = '';
+  }
+});
+  </script>
+
+</html>

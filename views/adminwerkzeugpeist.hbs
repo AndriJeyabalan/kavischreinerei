@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminwerkzeug.css">
+  </head>
+  <body>
+    <nav class="navbar">
+        <ul>
+            <li class="ausgewählt"><a href="/adminwerkzeug">Werkzeug</a></li>
+        </ul>
+    </nav>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/adminwerkzeugarosa">Arosa</a></li>
+        <li class="ausgewählt"><a href="/adminwerkzeugpeist">Peist</a></li>
+        <li><a href="/adminwerkzeugmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/adminwerkzeugkunde">Kunde</a></li>
+      </ul> 
+    </nav>  
+            <div class="tabellencontainer" >
+                <div class="sidetable">
+                    <form class="filter-form">
+                        <input type="text" placeholder="WerkzeugId und Bearbeiter Suchen" name="search">
+                        <button type="submit">Suchen</button>
+                    </form>
+                    <table class="table">
+                        <thead class="thead">
+                            <tr>
+                                <th>#</th>
+                                <th scope="col"><a href="?sortPeistBy=Id&sortOrder={{sortOrder}}">id</a></th> 
+                                <th scope="col"><a href="?sortPeistBy=WerkzeugId&sortOrder={{sortOrder}}">WerkzeugId</a></th>
+                                <th scope="col"><a href="?sortArosaBy=Werkzeugarosa&sortOrder={{sortOrder}}">Werkzeugarosa</a></th>
+                                <th scope="col"><a href="?sortArosaBy=Werkzeugkunde&sortOrder={{sortOrder}}">Werkzeugkunde</a></th>
+                                <th scope="col"><a href="?sortArosaBy=Werkzeugpeist&sortOrder={{sortOrder}}">Werkzeugpeist</a></th>
+                                <th scope="col"><a href="?sortArosaBy=Werkzeugmitarbeiter&sortOrder={{sortOrder}}">Werkzeugmitarbeiter</a></th>
+                                <th scope="col"><a href="?sortPeistBy=Notiz&sortOrder={{sortOrder}}">Notiz</a></th>
+                                <th scope="col"><a href="?sortPeistBy=Bearbeiter&sortOrder={{sortOrder}}">Bearbeiter</a></th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminwerkzeugpeist">
+                                    <tr> 
+                                        <td></td>
+                                        <td ><input name="id"/></td>
+                                        <td><input name="werkzeugid"/></td>
+                                        <td ><input name="werkzeugarosa"/></td>
+                                        <td ><input name="werkzeugkunde"/></td>
+                                        <td ><input name="werkzeugpeist"/></td>
+                                        <td ><input name="werkzeugmitarbeiter"/></td>
+                                        <td><input name="notiz"/></td>
+                                        <td><input name="bearbeiter"/></td>
+                                        <td>
+                                           <span class="icon-grid">
+                                                <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </form>  
+                        {{#each rowsPeist}}   
+                                <tr> 
+                                    <form name="adminform" id="admin-form" method="POST" action="/deleteadminwerkzeugpeist/{{this.Id}}">
+                                        <td>
+                                            <span class="icon-grid">
+                                                <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                            </span>
+                                        </td>
+                                    </form> 
+                                    <form name="adminform" id="admin-form" method="POST" action="/adminwerkzeugpeist/{{this.Id}}">
+                                        <td ><input name="id" value="{{this.Id}}" /></td>
+                                        <td><input name="werkzeugid" value="{{this.WerkzeugId}}"/></td>
+                                        <td><input name="werkzeugarosa" value="{{this.Werkzeugarosa}}"/></td>
+                                        <td><input name="werkzeugkunde" value="{{this.Werkzeugkunde}}"/></td>
+                                        <td><input name="werkzeugpeist" value="{{this.Werkzeugpeist}}"/></td>
+                                        <td><input name="werkzeugmitarbeiter" value="{{this.Werkzeugmitarbeiter}}"/></td>
+                                        <td ><input name="notiz" value="{{this.Notiz}}"/></td>
+                                        <td><input name="bearbeiter" value="{{this.Bearbeiter}}"/></td>
+                                        <td>
+                                            <span class="icon-grid">
+                                                <button class="bestätigen-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                                            </span> 
+                                        </td>
+                                    </form> 
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table> 
+                </div>
+                 <div class="sidetable"> 
+                    <table class="table">  
+                        <thead class="thead">
+                        <tr>
+                            <th scope="col" >id</th> 
+                            <th scope="col">Name</th>
+                            <th scope="col" colspan="2">Anzahl Peist</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            {{#each rows}}
+                            <tr>
+                                <td >{{this.Id}}</td>
+                                <td>{{this.Name}}</td>
+                                <form method="POST" action="/adminanzahlwerkzeugpeist/{{this.Id}}">
+                                    <td>
+                                        <input name="anzahl" value="{{this.AnzahlPeist}}" />
+                                    </td>
+                                    <td>
+                                       <span class="icon-grid">
+                                                <button class="save-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                                        </span>
+                                    </td>
+                                </form>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div> 
+            </div>  
+    </body>
+</html>

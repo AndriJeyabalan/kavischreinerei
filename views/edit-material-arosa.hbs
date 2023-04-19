@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <title>editMaterialArosa</title>
+    <link rel="stylesheet" type="text/css" href="../css/material.css">
+  </head>
+  <body>
+
+     <div class="navbar">
+       <a href="/editmaterial/{{rowsmaterial.Id}}" class="back-button">
+        <img src="../images/back-arrow.png" alt="Zurück" />
+      </a>
+      <h1>{{rowsmaterial.Name}}</h1>
+    </div>
+
+    <form method="POST" action="/editmaterialarosaeintrag/{{rowsmaterial.Id}}">
+      <div>
+      <label for="aufenthaltsort">Ort:</label>
+          <p>{{rows.Aufenthaltsort}}</p>
+          <input type="hidden" name="aufenthaltsort" value="{{rows.Aufenthaltsort}}" />
+      </div>
+
+      <div>
+      <label for="notiz">Notiz:</label>
+          <textarea type="text" id="Notiz" name="notiz" title="Bitte geben Sie eine neue Notiz ein">{{rows.Notiz}}</textarea>
+      </div>
+
+     <div>
+      <input type="hidden" name="id" value="{{rows.Id}}" />
+      <label for="AnzahlArosa">Anzahl Arosa:</label>
+      <input type="number" name="wert" value="{{rowsmaterial.AnzahlArosa}}" />
+      <input type="submit" value="Bestätigen" id="nehmen-btn" name="action" class="nehmen-btn" />
+    </div>
+   </form>
+ 
+  </body> 
+
+</html> 

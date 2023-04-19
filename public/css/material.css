@@ -1,0 +1,325 @@
+  /* Define custom styles for mobile devices */
+  @media only screen and (max-width: 3000px) {
+    body {
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+  }
+  .navbar h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  /* Icon-Buttons anpassen */
+  .back-button {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: #ff8566;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .back-button img {
+      width: 100%;
+      height: 100%;
+    }
+    .filter-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+    }
+    .search-container {
+      width: 100%;
+      max-width: 300px;
+      margin-right: 10px;
+    }
+    .search-container input[type=text] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 2px solid #ccc;
+    }
+    .filter-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    } 
+    .filter-container select {
+      padding: 12px 20px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #f1f1f1;
+      font-size: 16px;
+    } 
+    .filter-container button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+    .filter-container button:hover {
+      background-color: #3e8e41;
+    }
+  }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  background-color: #333;
+  color: #f2f2f2;
+  font-weight: bold;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+table, th, td {
+  border: 1px solid #ddd;
+}
+table td:last-child {
+  text-align: center;
+}
+table thead th {
+  background-color: #333;
+  color: #f2f2f2;
+  font-weight: bold;
+  padding: 8px;
+  text-align: left;
+}
+table tbody td:last-child {
+  text-align: center;
+}
+table tbody tr:hover {
+  background-color: #e6e6ff;
+}
+    /* Icon-Buttons anpassen */
+    .btn-icon {
+      background: none;
+      border: none;
+      color: #007bff;
+      cursor: pointer;
+      padding: 0;
+    }
+    .btn-icon:hover {
+      color: #0056b3;
+    }
+    .btn-icon:focus {
+      outline: none;
+    }
+   .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 0px;
+      margin: 5px;
+    }
+    .icon-grid a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      background-color: #f2ffe6;
+      text-decoration: none;
+      color: black;
+      border-radius: 10px;
+    }
+    .icon-grid a:hover {
+      background-color: #ffff99;
+    }
+    .icon-grid img {
+      height: 30px;
+      margin-bottom: 10px;
+    }
+/* edit-werkzeug.hbs und edit-werkzeug-form.hbs styling */
+
+/* Container für das gesamte Formular */
+.container {
+  width: 96%;
+  padding: 5px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+/* CSS-Regeln */
+.head {
+  overflow: auto;
+  margin-bottom: 15px;
+}
+.head a {
+  float: left;
+}
+.head h1, .head h2 {
+  margin: 0;
+  text-align: left;
+}
+.head h2 {
+  font-size: 18px;
+}
+/* Input-Container edit-werkzeug-form.hbs styling*/
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Breite auf 100% setzen */
+}
+/* Input-Wert */
+.input-group p {
+  margin:0; 
+  margin-left: 5px;
+  text-align: right;
+  overflow-wrap: break-word;
+}
+/* Button-Container */
+.button-container {
+  margin-top: 10px;
+  text-align: center;
+}
+/* Submit-Button */
+.submit-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.submit-btn:hover {
+  background-color: #3e8e41;
+}
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+.farbspiel:nth-of-type(odd) {
+  background-color: rgb(202, 230, 240);
+}
+
+.farbspiel:nth-of-type(even) {
+  background-color: rgb(169, 224, 169);
+}
+.farbspiel{
+  border: 1px solid black;
+  padding: 5px;
+  padding-left: 0;
+  padding-bottom: 0;
+  margin-bottom: 5px;
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.text-field-container{
+  padding-right: 10px;
+}
+.button-containera {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.auswählen-btn {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.auswählen-btn:hover {
+  background-color: #0062cc;
+}
+
+/*edit-werkzeug-arosa,kunde,mirarbeiter,peist*/
+.action-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 26%;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.nehmen-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 98%;
+  margin-top: 10px;
+}
+
+.nehmen-btn:hover {
+  background-color: #3e8e41;
+}
+textarea {
+  width: 95%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
+input[type="number"] {
+  width: 97%;
+}
+ 

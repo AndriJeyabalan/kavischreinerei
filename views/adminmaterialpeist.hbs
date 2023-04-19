@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminmaterial.css">
+  </head>
+  <body>
+    <nav class="navbar">
+        <ul>
+            <li class="ausgewählt"><a href="/adminmaterial">Material</a></li>
+        </ul>
+    </nav>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/adminmaterialarosa">Arosa</a></li>
+        <li class="ausgewählt"><a href="/adminmaterialpeist">Peist</a></li>
+      </ul> 
+    </nav>   
+            <div class="tabellencontainer" >
+                <div class="sidetable">
+                    <form class="filter-form">
+                        <input type="text" placeholder="MaterialId und Bearbeiter Suchen" name="search">
+                        <button type="submit">Suchen</button>
+                    </form>
+                    <table class="table">
+                        <thead class="thead">
+                            <tr>
+                                <th>#</th>
+                                <th scope="col"><a href="?sortPeistBy=Id&sortOrder={{sortOrder}}">id</a></th> 
+                                <th scope="col"><a href="?sortPeistBy=MaterialId&sortOrder={{sortOrder}}">MaterialId</a></th>
+                                <th scope="col"><a href="?sortPeistBy=Aufenthaltsort&sortOrder={{sortOrder}}">Aufenthaltsort</a></th>
+                                <th scope="col"><a href="?sortPeistBy=Notiz&sortOrder={{sortOrder}}">Notiz</a></th>
+                                <th scope="col"><a href="?sortPeistBy=Bearbeiter&sortOrder={{sortOrder}}">Bearbeiter</a></th>
+                                <th scope="col"><a href="?sortPeistBy=Datum&sortOrder={{sortOrder}}">Datum</a></th>
+                                <th>#</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                            <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminmaterialpeist">
+                                    <tr> 
+                                        <td></td>
+                                        <td ><input name="id"/></td>
+                                        <td><input name="materialid"/></td>
+                                        <td ><input name="aufenthaltsort"/></td>
+                                        <td ><input name="notiz"/></td>
+                                        <td ><input name="bearbeiter"/></td>
+                                        <td ><input name="datum"/></td>
+                                        <td>
+                                            <span class="icon-grid">
+                                                <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </form>  
+                        {{#each rowsPeist}}                                
+                                <tr> 
+                                    <form name="adminform" id="admin-form" method="POST" action="/deleteadminmaterialpeist/{{this.Id}}">
+                                        <td>
+                                            <span class="icon-grid">
+                                                <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                            </span>
+                                        </td>
+                                    </form>
+                                    <form name="adminform" id="admin-form" method="POST" action="/adminmaterialpeist/{{this.Id}}">
+                                        <td ><input name="id" value="{{this.Id}}" /></td>
+                                        <td><input name="materialid" value="{{this.MaterialId}}"/></td>
+                                        <td><input name="aufenthaltsort" value="{{this.Aufenthaltsort}}"/></td>
+                                        <td><input name="notiz" value="{{this.Notiz}}"/></td>
+                                        <td><input name="bearbeiter" value="{{this.Bearbeiter}}"/></td>
+                                        <td><input name="datum" value="{{this.formatiertes_Datum}}"/></td>
+                                        <td>
+                                            <span class="icon-grid">
+                                                <button class="bestätigen-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                                            </span> 
+                                        </td>
+                                    </form> 
+                                </tr> 
+                            {{/each}}
+                        </tbody>
+                    </table> 
+                </div>
+                <div class="sidetable"> 
+                    <table class="table">  
+                        <thead class="thead">
+                        <tr>
+                            <th scope="col" >id</th> 
+                            <th scope="col">Name</th>
+                            <th scope="col" colspan="2">Anzahl Arosa</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            {{#each rows}}
+                            <tr>
+                                <td >{{this.Id}}</td>
+                                <td>{{this.Name}}</td>
+                                 <form method="POST" action="/adminanzahlmaterialpeist/{{this.Id}}">
+                                    <td>
+                                        <input name="anzahl" value="{{this.AnzahlPeist}}" />
+                                    </td>
+                                    <td>
+                                       <span class="icon-grid">
+                                                <button class="save-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                                        </span>
+                                    </td>
+                                </form>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div> 
+            </div >
+    </body>
+</html>

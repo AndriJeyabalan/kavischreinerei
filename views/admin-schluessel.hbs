@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="css/adminwerkzeug.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/adminstunden">Stunden</a></li>
+        <li><a href="/adminkunden">Kunden</a></li>
+        <li><a href="/adminmitarbeiter">Mitarbeiter</a></li>
+        <li><a href="/admintermine">Termine</a></li>
+        <li><a href="/adminpost">Post</a></li>
+        <li><a href="/adminwerkzeug">Werkzeug</a></li>
+        <li><a href="/adminmaterial">Material</a></li>
+        <li><a href="/adminfahrzeuge">Fahrzeuge</a></li>
+        <li  class="ausgewählt"><a href="/adminschluessel">Schlüssel</a></li>
+        <li><a href="/adminschule">Schule</a></li>
+        <li><a href="/lieferanten">Lieferanten</a></li>
+        <li><a href="/backup">Backup</a></li>
+      </ul>
+    </nav> 
+            <form class="filter-form">
+                <input type="text" placeholder="Suchen" name="search">
+                <select id="select" name="select" title="Wählen Sie den Typ des Werkzeugs aus">
+                    <option value="" disabled selected>Filtern</option>
+                    <option value="data">Zurückgegeben</option>
+                    <option value="nodata">noch nicht zurückgegeben</option>
+                </select>
+                <button type="submit">Filtern/Suchen</button>
+            </form> 
+          <table class="table" > 
+              <thead class="thead">
+                  <tr>    
+                    <th scope="col">#</th>          
+                    <th scope="col"><a href="?sortBy=Id&sortOrder={{sortOrder}}">Id</a></th> 
+                    <th scope="col"><a href="?sortBy=Vorname&sortOrder={{sortOrder}}">Vornamen</a></th>
+                    <th scope="col"><a href="?sortBy=Nachname&sortOrder={{sortOrder}}">Nachname</a></th>
+                    <th scope="col"><a href="?sortBy=Code&sortOrder={{sortOrder}}">Code</a></th>
+                    <th scope="col"><a href="?sortBy=Notiz&sortOrder={{sortOrder}}">Notiz</a></th>
+                    <th scope="col"><a href="?sortBy=Entgegengenommen&sortOrder={{sortOrder}}">Entgegengenommen</a></th>
+                    <th scope="col"><a href="?sortBy=Zurueckgegeben&sortOrder={{sortOrder}}">Zurückgegeben</a></th>
+                    <th scope="col"><a href="?sortBy=Datum&sortOrder={{sortOrder}}">Datum</a></th>
+                    <th scope="col"><a href="?sortBy=DatumZurueckgegebne&sortOrder={{sortOrder}}">Datum Zurückgegeben</a></th>
+                    <th scope="col">#</th>
+                  </tr>
+              </thead>
+              <tbody class="tbody">
+                <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminschluessel">
+                            <tr> 
+                                <td></td>
+                                <td></td>
+                                <td><input name="vorname"/></td>
+                                <td ><input name="nachname"/></td>
+                                <td ><input name="code"/></td>
+                                <td><input name="notiz"/></td>
+                                <td ><input name="entgegengenommen"/></td>
+                                <td><input name="zurueckgegeben"/></td>
+                                <td ><input name="datum"/></td>
+                                <td><input name="datumzurueckgegeben"/></td>
+                                <td>
+                                    <span class="icon-grid">
+                                         <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
+                                    </span>
+                                </td>
+                            </tr>  
+                    </form> 
+                {{#each rows}} 
+                  <tr>  
+                          <form name="adminform" id="admin-form" method="POST" action="/deleteadminschluessel/{{this.Id}}">
+                                <td>
+                                    <span class="icon-grid">
+                                        <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                    </span>
+                                </td> 
+                          </form>
+                          <form name="adminform" id="admin-form" method="POST" action="/updateadminschluessel/{{this.Id}}">
+                            <td ><input name="id" value="{{this.Id}}" /></td>
+                            <td><input name="vorname" value="{{this.Vorname}}"/></td>
+                            <td ><input name="nachname" value="{{this.Nachname}}"/></td>
+                            <td ><input name="code" value="{{this.Code}}"/></td>
+                            <td><textarea name="notiz"/>{{this.Notiz}}</textarea></td>
+                            <td><input name="entgegengenommen" value="{{this.Entgegengenommen}}"/></td>
+                            <td ><input name="zurueckgegeben" value="{{this.Zurueckgegeben}}"/></td>
+                            <td><input name="datum" value="{{this.formatiertes}}"/></td>
+                            <td ><input name="datumzurueckgegeben" value="{{this.formatiertesDatum}}"/></td>
+                            <td>
+                              <span class="icon-grid">
+                                <button class="save-btn" type="submit"><img src="../images/bestätigen-icon.png"></button>
+                              </span>
+                            </td>
+                        </form>   
+                      </tr>
+                {{/each}}
+              </tbody>
+            </table> 
+        </body>
+</html>

@@ -1,0 +1,86 @@
+/*Einfügeformular und bilder*/
+.foto-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+label {
+  font-weight: bold;
+  margin-bottom: 5px; 
+}
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+.foto img {
+  width: 800px;
+  height: 500px;
+  position: relative;
+}
+.container{
+  height: 100%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.icon img {
+  width: 20px;
+  height: 20px;
+  
+}
+/*Navbar*/
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.navbar li {
+  float: left;
+}
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 21px;
+}
+.navbar li a:hover {
+  background-color: #111;
+}
+.ausgewählt{
+  font-weight: bold;
+  text-decoration: underline;
+  color: rgb(201, 80, 80);
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin-right: 20px;
+}
+a {
+  color: #333;
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}

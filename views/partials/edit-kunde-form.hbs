@@ -1,0 +1,17 @@
+    {{#each rowsAuftrag}}
+        <form name="auftragform" id="auftrag-form" method="POST" action="/editkunde/{{Id}}">
+            <div class="card"> 
+                <div class="card-header">
+                <h2 class="card-title kurzbezeichnung">{{Kurzbezeichnung}}</h2>
+                </div>
+                <div class="card-body">
+                <p class="card-text beschrieb">{{Beschrieb}}</p>
+                <p class="card-title status">{{Status}}</p>
+                <input type="hidden" name="id" value="{{Id}}" />
+                </div>
+                <div class="card-footer">
+                <input type="submit" value="Erledigt" id="auswählen-btn" name="action" class="auswählen-btn" />
+                </div>
+            </div>
+        </form>
+    {{/each}}
