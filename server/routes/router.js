@@ -144,7 +144,8 @@ const fileFilter = (req, file, cb) => {
 };
 router.get('/adminkundendruck/:id',requireAdmin,requireLogin, adminkundenController.viewAdminKundenDruck);
 // Middleware für Datei-Uploads
-const upload = multer({ storage, fileFilter });
+const upload = multer({ dest: './uploads/' });
+
 // Route für Datei-Uploads
 router.post('/upload', requireAdmin, requireLogin, upload.single('photo'), adminkundenController.saveAdminKundenFoto);
 router.post('/deleteadminkundenfoto/:id', requireAdmin, requireLogin, adminkundenController.deleteAdminKundenFoto);
