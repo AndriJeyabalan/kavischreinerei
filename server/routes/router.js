@@ -124,24 +124,7 @@ router.post('/updateadminkundenauftrageintrag',requireAdmin,requireLogin, admink
 router.post('/stundezuordnen/:id',requireAdmin,requireLogin, adminkundenController.stundenZuordnen);
 router.get('/adminkundenfoto/:id',requireAdmin,requireLogin, adminkundenController.viewAdminKundenFoto);
 //Fotos
-const multer = require('multer'); 
-// Speicherort für hochgeladene Dateien
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-// Filter für hochladbare Dateitypen
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image/')) {
-    cb(null, true);
-  } else {
-    cb(new Error('Nur Bilder sind erlaubt.'));
-  }
-};
+
 router.get('/adminkundendruck/:id',requireAdmin,requireLogin, adminkundenController.viewAdminKundenDruck);
 // Middleware für Datei-Uploads
 const upload = multer({ storage, fileFilter });
