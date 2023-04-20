@@ -10,8 +10,8 @@ exports.viewAdminStunden = (req, res) => {
     let searchQuery = req.query.search;
     let searchQueryStunden = req.query.searchstunden;
     let filterQuery = req.query['filter-type'];
-    let sortColumn = req.query.sortBy || "id"; // Standardmäßig nach "id" sortieren
-    let sortOrder = req.query.sortOrder || "ASC"; // Standardmäßig aufsteigend sortieren
+    let sortColumn = req.query.sortBy || "Datum"; // Standardmäßig nach "id" sortieren
+    let sortOrder = req.query.sortOrder || "DESC"; // Standardmäßig aufsteigend sortieren
     
     let query = `SELECT * FROM stunden`;
     let querya = `SELECT * FROM kunden`;
