@@ -11,6 +11,9 @@
     <img src="../images/back-arrow.png" alt="Zurück" />
   </a>
   <h1> {{rows.Vorname}} {{rows.Nachname}}</h1>
+  <a href="/index" class="home-button">
+        <img src="../images/home-icon.png" alt="Zurück" />
+      </a> 
   </div>
      <form name="zurückgeben" id="zurückgeben-form" method="POST" action="/schluesselzurueckgeben/{{rows.Id}}">
         <input type="hidden" name="id" value="{{rows.Id}}" />

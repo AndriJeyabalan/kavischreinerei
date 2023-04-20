@@ -7,30 +7,28 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME
 });
 // View Werkzeuge
-  exports.viewWerkzeuge = (req, res) => {
-    let searchQuery = req.query.search;
-    let filterQuery = req.query['tool-type'];
-    
-    let query = `SELECT * FROM werkzeug`;
-  
-    if (searchQuery) {
-      query += ` WHERE Name LIKE '%${searchQuery}%'`;
+exports.viewWerkzeuge = (req, res) => {
+  let searchQuery = req.query.search;
+  let filterQuery = req.query['tool-type'];
+  let isFiltering = false; // Hier initialisieren
+  let query = `SELECT * FROM werkzeug`;
+  if (searchQuery) {
+    query += ` WHERE Name LIKE '%${searchQuery}%'`;
+    isFiltering = true; // Hier setzen
+  } else if (filterQuery) {
+    query += ` WHERE Bezeichnung ='${filterQuery}'`;
+    isFiltering = true; // Hier setzen
+  }
+  connection.query(query, (err, rows) => {
+    if (!err) {
+      let removedWerkzeug = req.query.removed;
+      res.render('werkzeug', { rows, removedWerkzeug, isFiltering }); // Hier übergeben
+    } else {
+      console.log(err);
     }
-  
-    if (filterQuery) {
-      query += ` WHERE Bezeichnung ='${filterQuery}'`;
-    }
-  
-    connection.query(query, (err, rows) => {
-      if (!err) {
-        let removedWerkzeug = req.query.removed;
-        res.render('werkzeug', { rows, removedWerkzeug });
-      } else {
-        console.log(err);
-      }
-      console.log('The data from Werkzeug table: \n', rows);
-    });
-}
+    console.log('The data from Werkzeug table: \n', rows);
+  }); 
+};
 //Edit Werkzeug
 exports.editWerkzeug = (req, res) =>{
   const arbeitername = req.session.user.username;

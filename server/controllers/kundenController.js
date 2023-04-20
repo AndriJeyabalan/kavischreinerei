@@ -11,18 +11,20 @@ const connection = mysql.createConnection({
 // View Kunde
 exports.viewKunde = (req, res) => {
   let searchQuery = req.query.search;
+  let isFiltering = false; // Hier initialisieren
   let query = `SELECT * FROM kunden WHERE Status = "Laufend"`;
   let kundenid = req.params.id;
   let querya = `SELECT * FROM foto WHERE kunden_id = '${kundenid}'`;
 
 connection.query(querya, (err, rowsform) => {
   if (searchQuery) {
-    query += ` WHERE Vorname LIKE '%${searchQuery}%' OR Nachname LIKE '%${searchQuery}%'`;
+    query += ` && Vorname LIKE '%${searchQuery}%' OR Nachname LIKE '%${searchQuery}%'`;
+    isFiltering = true; // Hier setzen
   }
     connection.query(query, (err, rows) => {
       if (!err) {
         let removedKunde = req.query.removed;
-        res.render('kunde', { rows, removedKunde, rowsform });
+        res.render('kunde', { rows, removedKunde, rowsform, isFiltering });
       } else {
         console.log(err);
       }

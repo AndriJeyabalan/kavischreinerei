@@ -84,7 +84,10 @@ exports.viewStunden = (req, res) => {
     }
 
     // Konvertiere den Stunden-Map zurück in eine flache Array-Struktur
-    const flatRows = Array.from(stundenMap.values()).flat();
+    const flatRows = [];
+    stundenMap.forEach(datumRows => {
+      flatRows.push(...datumRows);
+    });
 
     res.render('stunden', { rows: flatRows, removedStunden });
   });

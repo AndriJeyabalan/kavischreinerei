@@ -1,8 +1,5 @@
 const mysql = require('mysql');
-const multer  = require('multer');
-const upload = multer({ dest: 'uploads/' });
-
-
+ 
 // Connection Pool
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -15,21 +12,24 @@ const connection = mysql.createConnection({
   exports.viewMaterial = (req, res) => {
     let searchQuery = req.query.search;
     let filterQuery = req.query['tool-type'];
+    let isFiltering = false; // Hier initialisieren
     
     let query = `SELECT * FROM material`;
   
     if (searchQuery) {
       query += ` WHERE Name LIKE '%${searchQuery}%'`;
+      isFiltering = true; // Hier setzen
     }
   
     if (filterQuery) {
       query += ` WHERE Bezeichnung ='${filterQuery}'`;
+      isFiltering = true; // Hier setzen
     }
   
     connection.query(query, (err, rows) => {
       if (!err) {
         let removedMaterial = req.query.removed;
-        res.render('material', { rows, removedMaterial });
+        res.render('material', { rows, removedMaterial, isFiltering });
       } else {
         console.log(err);
       }

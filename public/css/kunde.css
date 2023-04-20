@@ -1,36 +1,9 @@
-/* Define custom styles for mobile devices */
-@media only screen and (max-width: 3000px) {
-  body {
+body {
     font-size: 16px;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-  }
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  background-color: #333;
-  color: white;
-}
-.navbar h1 {
-  font-size: 24px;
-  margin: 0;
-}
-  /* Icon-Buttons anpassen */
-.back-button {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    background-color: #ff8566;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  .back-button img {
-    width: 100%;
-    height: 100%;
   }
   .filter-form {
     display: flex;
@@ -66,7 +39,6 @@
   .filter-container button:hover {
     background-color: #3e8e41;
   }
-}
 table {
   border-collapse: collapse;
   width: 100%;
@@ -164,7 +136,12 @@ table tbody tr:hover {
 .submit-btn:hover {
   background-color: #3e8e41;
 }
-
+button.zurück {
+  background-color: rgb(201, 32, 32);
+}
+button.zurück:hover {
+  background-color: rgb(214, 66, 66);
+}
 .button-containera {
   display: flex;
   justify-content: center;
@@ -281,3 +258,40 @@ table tbody tr:hover {
   width: 100%;
   height: 100%;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+.back-button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.back-button img {
+  width: 100%;
+  height: 100%;
+}
+.home-button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.home-button img {
+  width: 100%;
+  height: 100%;
+}
+.navbar h1 {
+  font-size: 24px;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+} 

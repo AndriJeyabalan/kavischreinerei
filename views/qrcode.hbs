@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fahrzeug eintragen</title>
+    <link rel="stylesheet" type="text/css" href="css/qrcode.css">
+  </head>
+  <body>
+    <div class="navbar">
+      <h1>QR Scan</h1>
+      <a href="/index" class="home-button">
+        <img src="images/home-icon.png" alt="Zurück" />
+      </a>
+    </div>
+    <button id="scan-button">
+        <img class="qr" src="images/qrcode-icon.png" alt="QR Code" />
+        <span class="sr-only">QR-Code scannen</span>
+    </button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script>
+      // Initialisiere QuaggaJS und lege die Konfiguration fest
+      Quagga.init(
+        {
+          inputStream: {
+            name: "Live",
+            type: "LiveStream",
+            target: document.querySelector("#scan-window"),
+            constraints: {
+              facingMode: "environment", // Kamera auf der Rückseite des Geräts
+            },
+          },
+          decoder: {
+            readers: ["ean_reader", "ean_8_reader", "code_39_reader", "code_128_reader", "qr_code_reader"],
+          },
+        },
+        function (err) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          console.log("QuaggaJS wurde erfolgreich initialisiert.");
+          Quagga.start();
+        }
+      );
+
+      // Füge einen Klick-Event-Listener zur Schaltfläche hinzu
+      document.querySelector("#scan-button").addEventListener("click", function () {
+        document.querySelector("#scan-window").style.display = "block";
+        Quagga.start();
+      });
+
+      // Stoppe den Scanner, wenn das Fenster geschlossen wird
+      document.querySelector("#scan-window .close-button").addEventListener("click", function () {
+        document.querySelector("#scan-window").style.display = "none";
+        Quagga.stop();
+      });
+
+      // Behandle die gescannten Ergebnisse
+      Quagga.onDetected(function (result) {
+        console.log("Ergebnis gefunden:", result);
+        // Hier können Sie die gefundenen Daten weiterverarbeiten, z.B. per AJAX-Request an den Server schicken
+      });
+    </script>
+  </body>
+</html>

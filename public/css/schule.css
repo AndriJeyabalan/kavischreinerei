@@ -1,39 +1,10 @@
-/* Define custom styles for mobile devices */
-@media only screen and (max-width: 3000px) {
-    body {
+ body {
       font-size: 16px;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
-  .navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-  }
-  .navbar h1 {
-    font-size: 24px;
-    margin: 0;
-  }
-  /* Icon-Buttons anpassen */
-  .back-button {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-color: #ff8566;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-    .back-button img {
-      width: 100%;
-      height: 100%;
-    }
-
-}
 table {
     border-collapse: collapse;
     width: 100%;
@@ -69,7 +40,6 @@ table {
   table tbody tr:hover {
     background-color: #e6e6ff;
   }
-
    /* Icon-Buttons anpassen */
    .btn-icon {
     background: none;
@@ -108,7 +78,6 @@ table {
     height: 30px;
     margin-bottom: 10px;
   }
-
   .filter-form {
     display: flex;
     flex-wrap: wrap;
@@ -156,8 +125,12 @@ table {
   .filter-container button:hover {
     background-color: #3e8e41;
   }
-
-
+  button.zurück {
+    background-color: rgb(201, 32, 32);
+  }
+  button.zurück:hover {
+    background-color: rgb(214, 66, 66);
+  }
 .info-container {
   display: flex;
   flex-wrap: wrap;
@@ -178,7 +151,6 @@ table {
 .info {
   font-size: 14px;
 }
-@media screen and (max-width: 3000px) {
   .info-container {
     flex-direction: column;
     
@@ -190,4 +162,39 @@ table {
   .info {
     font-size: 16px;
   }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
 }
+.back-button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.back-button img {
+  width: 100%;
+  height: 100%;
+}
+.home-button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.home-button img {
+  width: 100%;
+  height: 100%;
+}
+.navbar h1 {
+  font-size: 24px;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+} 

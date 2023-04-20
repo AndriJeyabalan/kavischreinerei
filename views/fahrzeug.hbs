@@ -8,10 +8,10 @@
   <body>
 
     <div class="navbar">
-       <a href="/index" class="back-button">
-        <img src="images/back-arrow.png" alt="Zurück" />
-      </a> 
       <h1>Fahrzeuge</h1>
+      <a href="/index" class="home-button">
+        <img src="images/home-icon.png" alt="Zurück" />
+      </a>
     </div>
 
     <table class="table table-striped table-bordered">
@@ -31,6 +31,31 @@
             <td>
                 <span class="icon-grid">
                     <a href="/editfahrzeug/{{this.Id}}" class="icon" aria-label="Bearbeiten">
+                    <img src="/images/bearbeiten-icon.png" alt="Bearbeiten"> 
+                    </a> 
+                </span>
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+       </table>
+       <h1>Tankliste:</h1>
+    <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" >Menge</th> 
+            <th scope="col">Preis</th>
+            <th scope="col">#</th>
+        </tr>
+    </thead>
+     <tbody>
+        {{#each rowstanken}}
+        <tr>
+            <td >{{this.Menge}}</td>
+            <td>{{this.Preis}}</td>
+            <td>
+                <span class="icon-grid">
+                    <a href="/edittanken/{{this.Id}}" class="icon" aria-label="Bearbeiten">
                     <img src="/images/bearbeiten-icon.png" alt="Bearbeiten"> 
                     </a> 
                 </span>

@@ -1,0 +1,40 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>editfahrzeug</title>
+   
+    <link rel="stylesheet" type="text/css" href="../css/fahrzeug.css">
+  </head>
+  <body>
+     <div class="navbar">
+  <a href="/fahrzeuge" class="back-button">
+    <img src="../images/back-arrow.png" alt="Zurück" />
+  </a>
+  <h1> Tankeintrag</h1>
+  <a href="/index" class="home-button">
+        <img src="../images/home-icon.png" alt="Zurück" />
+      </a> 
+  </div>
+
+    <div class="container">
+        <form name="tankenform" id="tanken-form" method="POST" action="/edittanken/{{rows.Id}}">
+            <div class="card">
+                <div class="card-header">
+                    <p>Datum: {{rows.Datum}}</p>
+                </div>
+                <div class="card-body">
+                <label for="Tanken"></label>
+                <input name="menge" id="menge" class="tanken" type="Number" placeholder="{{rows.Menge}}" required/><p> Liter</p>
+                <label for="Preis"></label>
+                <input name="preis" id="preis" class="tanken" type="Number" placeholder="{{rows.Preis}}" required/><p> Franken</p>
+                </div>
+                <div class="card-footer">
+                <input type="hidden" name="id" value="{{rows.Id}}" />
+                <input type="submit" value="Ändern" id="auswählen-btn" name="action" class="auswählen-btn" />
+                </div>
+            </div>
+        </form>
+    </div>
+  </body>
+</html>
+ 

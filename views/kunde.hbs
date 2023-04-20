@@ -7,10 +7,10 @@
   </head>
   <body>
     <div class="navbar">
-       <a href="/index" class="back-button">
-        <img src="images/back-arrow.png" alt="Zurück" />
-      </a> 
       <h1>Kunden</h1>
+      <a href="/index" class="home-button">
+        <img src="images/home-icon.png" alt="Zurück" />
+      </a>
     </div>
 
     <form class="filter-form">
@@ -18,10 +18,13 @@
             <input type="text" placeholder="Suchen" name="search">
         </div>
         <div class="filter-container">
-            <button type="submit">Suchen</button>
+            {{#if isFiltering}}
+                <button id="cancel-btn" class="zurück" type="submit">Suche abbrechen</button>
+            {{else}}
+                <button id="filter-btn" class="search" type="submit">Filtern/Suchen</button>
+            {{/if}}
         </div>
     </form>
-
     <table class="table table-striped table-bordered">
     <thead class="thead-dark">
         <tr>
@@ -46,8 +49,31 @@
         {{/each}}
         </tbody>
        </table>
-
-
   </body>
-
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+        var filterButton = document.getElementById('filter-btn');
+        var cancelButton = document.getElementById('cancel-btn');
+        var isFiltering = {{isFiltering}}; // Hier auslesen
+        if (isFiltering) {
+            cancelButton.classList.remove('hide');
+            var filterButton = document.getElementById('filter-btn');
+            var cancelButton = document.getElementById('cancel-btn');
+        } else {
+            filterButton.classList.remove('hide');
+            
+        }
+        filterButton.addEventListener('click', function() {
+            cancelButton.classList.remove('hide');
+            filterButton.classList.add('hide');
+            document.getElementById('filter-form').submit();
+        });
+        cancelButton.addEventListener('click', function() {
+            cancelButton.classList.add('hide');
+            filterButton.classList.remove('hide');
+            document.getElementById('search').value = '';
+            document.getElementById('filter-form').submit();
+        });
+        });
+    </script> 
 </html>

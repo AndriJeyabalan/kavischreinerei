@@ -15,6 +15,7 @@ const fahrzeugController = require('../controllers/fahrzeugController');
 const schluesselController = require('../controllers/schluesselController');
 const schuleController = require('../controllers/schuleController');
 const postController = require('../controllers/postController');
+const qrController = require('../controllers/qrController');
 //Admin
 const adminController = require('../admincontroller/adminController');
 const adminstundenController = require('../admincontroller/adminstundenController');
@@ -95,6 +96,8 @@ router.post('/editpostrueckstand/:id',requireLogin, postController.nehmenPostrue
 router.get('/fahrzeuge',requireLogin, fahrzeugController.viewFahrzeug);
 router.get('/editfahrzeug/:id',requireLogin, fahrzeugController.editFahrzeuge);
 router.post('/editfahrzeug/:id',requireLogin, fahrzeugController.fahrzeugeTanken);
+router.get('/edittanken/:id',requireLogin, fahrzeugController.editTanken);
+router.post('/edittanken/:id',requireLogin, fahrzeugController.updateTanken);
 //Schlüssel
 router.get('/schluessel',requireLogin, schluesselController.viewSchluessel);
 router.get('/editschluessel/:id',requireLogin, schluesselController.editSchluessel);
@@ -104,6 +107,8 @@ router.post('/speicherschluessel',requireLogin, schluesselController.speicherSch
 //Schule  
 router.get('/schule',requireLogin, schuleController.viewSchule);
 router.get('/viewschule/:id',requireLogin, schuleController.viewSchuleEintrag);
+//QR Code Scann
+router.get('/qrcode',requireLogin, qrController.viewQr);
 //Admin Home
 router.get('/admin',requireAdmin,requireLogin, adminController.viewAdminHome);
 //Registrieren 
@@ -145,7 +150,6 @@ const fileFilter = (req, file, cb) => {
 router.get('/adminkundendruck/:id',requireAdmin,requireLogin, adminkundenController.viewAdminKundenDruck);
 // Middleware für Datei-Uploads
 const upload = multer({ storage, fileFilter });
-
 // Route für Datei-Uploads
 router.post('/upload', requireAdmin, requireLogin, upload.single('photo'), adminkundenController.saveAdminKundenFoto);
 router.post('/deleteadminkundenfoto/:id', requireAdmin, requireLogin, adminkundenController.deleteAdminKundenFoto);
