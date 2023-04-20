@@ -5,12 +5,54 @@
     <title>Fahrzeug eintragen</title>
     <link rel="stylesheet" type="text/css" href="css/qrcode.css">
   </head>
-   <body>
-    <button id="scan-button">
-      <img src="images/qrcode-icon.png" alt="QR Code" />
-    </button>
-    <video id="video" style="display:none"></video>
-    <canvas id="canvas"></canvas>
+  <body>
 
+    <div class="navbar">
+      <h1>QR Scan</h1>
+      <a href="/index" class="home-button">
+        <img src="images/home-icon.png" alt="Zurück" />
+      </a>
+    </div>
+    <button id="scan-button">
+        <img class="qrcode" src="images/qrcode-icon.png" alt="QR Code" />
+        <p>QR-Code Scan</p>
+    </button>
+    <video></video>
   </body>
+  <script>
+  function openCamera() {
+    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+          var video = document.querySelector('video');
+          video.srcObject = stream;
+          video.play();
+ 
+          var scanner = new Instascan.Scanner({ video: video });
+          scanner.addListener('scan', function (content) {
+            window.location.href = content; // Weiterleitung zum QR-Code-Link
+          });
+ 
+          Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+              scanner.start(cameras[0]);
+            } else {
+              console.error('Keine Kamera gefunden.');
+            }
+          }).catch(function (e) {
+            console.error(e);
+          });
+        })
+        .catch(function(err) {
+          console.error(err);
+        });
+    }
+  }
+ 
+  var scanButton = document.getElementById('scan-button');
+  scanButton.addEventListener('click', function() {
+    openCamera();
+  });
+</script>
+
 </html>

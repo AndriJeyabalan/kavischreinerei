@@ -35,6 +35,8 @@
     text-align: center;
     flex-grow: 1;
   } 
-  .qr{
+
+  .qrcode{
+    margin-top: 0px;
     width: 100%;
   }
