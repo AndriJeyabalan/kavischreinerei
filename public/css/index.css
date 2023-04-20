@@ -32,6 +32,18 @@
       grid-gap: 20px;
       margin: 20px;
     }
+    .icon-grid button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      background-color: #f2f2f2;
+      text-decoration: none;
+      color: black;
+      border-radius: 10px;
+      border: none;
+    }
     .icon-grid a {
       display: flex;
       flex-direction: column;
