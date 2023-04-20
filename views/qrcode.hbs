@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Fahrzeug eintragen</title>
+    <title>QR Code Scan</title>
     <link rel="stylesheet" type="text/css" href="css/qrcode.css">
   </head>
   <body>
@@ -17,42 +17,35 @@
         <img class="qrcode" src="images/qrcode-icon.png" alt="QR Code" />
         <p>QR-Code Scan</p>
     </button>
-    <video></video>
+    <video id="qr-video"></video>
+    <script>
+      // Zugriff auf die Elemente
+      const scanButton = document.getElementById("scan-button");
+      const qrVideo = document.getElementById("qr-video");
+
+      // Handler für den Klick auf den Button
+      scanButton.addEventListener("click", async () => {
+        try {
+          // Zugriff auf die Kamera des Geräts
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          qrVideo.srcObject = stream;
+          qrVideo.play();
+
+          // QR-Code-Scan-Logik
+          const qrScanner = new QrScanner(qrVideo, result => {
+            alert(`QR-Code gescannt: ${result}`);
+            qrScanner.stop();
+            qrVideo.pause();
+            qrVideo.srcObject = null;
+          });
+
+          qrScanner.start();
+        } catch (error) {
+          console.error(error);
+          alert("Ein Fehler ist aufgetreten beim Zugriff auf die Kamera.");
+        }
+      });
+    </script>
   </body>
-  <script>
-  function openCamera() {
-    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-          var video = document.querySelector('video');
-          video.srcObject = stream;
-          video.play();
- 
-          var scanner = new Instascan.Scanner({ video: video });
-          scanner.addListener('scan', function (content) {
-            window.location.href = content; // Weiterleitung zum QR-Code-Link
-          });
- 
-          Instascan.Camera.getCameras().then(function (cameras) {
-            if (cameras.length > 0) {
-              scanner.start(cameras[0]);
-            } else {
-              console.error('Keine Kamera gefunden.');
-            }
-          }).catch(function (e) {
-            console.error(e);
-          });
-        })
-        .catch(function(err) {
-          console.error(err);
-        });
-    }
-  }
- 
-  var scanButton = document.getElementById('scan-button');
-  scanButton.addEventListener('click', function() {
-    openCamera();
-  });
-</script>
 
 </html>
