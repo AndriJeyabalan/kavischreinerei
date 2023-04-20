@@ -5,61 +5,81 @@
     <title>Fahrzeug eintragen</title>
     <link rel="stylesheet" type="text/css" href="css/qrcode.css">
   </head>
-  <body>
-    <div class="navbar">
-      <h1>QR Scan</h1>
-      <a href="/index" class="home-button">
-        <img src="images/home-icon.png" alt="Zurück" />
-      </a>
-    </div>
+   <body>
     <button id="scan-button">
-        <img class="qr" src="images/qrcode-icon.png" alt="QR Code" />
-        <span class="sr-only">QR-Code scannen</span>
+      <img src="images/qrcode-icon.png" alt="QR Code" />
     </button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-    <script>
-      // Initialisiere QuaggaJS und lege die Konfiguration fest
-      Quagga.init(
-        {
-          inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: document.querySelector("#scan-window"),
-            constraints: {
-              facingMode: "environment", // Kamera auf der Rückseite des Geräts
-            },
-          },
-          decoder: {
-            readers: ["ean_reader", "ean_8_reader", "code_39_reader", "code_128_reader", "qr_code_reader"],
-          },
-        },
-        function (err) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-          console.log("QuaggaJS wurde erfolgreich initialisiert.");
-          Quagga.start();
-        }
-      );
+    <video id="video" style="display:none"></video>
+    <canvas id="canvas"></canvas>
+    <script >
+      const scanButton = document.getElementById("scan-button");
+const video = document.getElementById("video");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-      // Füge einen Klick-Event-Listener zur Schaltfläche hinzu
-      document.querySelector("#scan-button").addEventListener("click", function () {
-        document.querySelector("#scan-window").style.display = "block";
-        Quagga.start();
-      });
+const constraints = {
+  audio: false,
+  video: {
+    facingMode: "environment",
+    width: { ideal: 640 },
+    height: { ideal: 480 }
+  }
+};
 
-      // Stoppe den Scanner, wenn das Fenster geschlossen wird
-      document.querySelector("#scan-window .close-button").addEventListener("click", function () {
-        document.querySelector("#scan-window").style.display = "none";
-        Quagga.stop();
-      });
+function startCamera() {
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then(stream => {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
 
-      // Behandle die gescannten Ergebnisse
-      Quagga.onDetected(function (result) {
-        console.log("Ergebnis gefunden:", result);
-        // Hier können Sie die gefundenen Daten weiterverarbeiten, z.B. per AJAX-Request an den Server schicken
-      });
+function stopCamera() {
+  const stream = video.srcObject;
+  const tracks = stream.getTracks();
+
+  tracks.forEach(track => {
+    track.stop();
+  });
+
+  video.srcObject = null;
+}
+
+function scanQRCode() {
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+  if (code) {
+    console.log(code.data);
+  } else {
+    setTimeout(scanQRCode, 100);
+  }
+}
+
+scanButton.addEventListener("click", () => {
+  startCamera();
+  video.style.display = "block";
+  canvas.style.display = "none";
+  scanButton.style.display = "none";
+});
+
+video.addEventListener("click", () => {
+  video.style.display = "none";
+  canvas.style.display = "block";
+  scanQRCode();
+});
+
+canvas.addEventListener("click", () => {
+  stopCamera();
+  video.style.display = "none";
+  canvas.style.display = "none";
+  scanButton.style.display = "block";
+});
     </script>
   </body>
 </html>
