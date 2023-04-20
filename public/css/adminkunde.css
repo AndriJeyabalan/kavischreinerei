@@ -1,7 +1,11 @@
 /*Navbar*/
+
 .navbar {
   background-color: #333;
   overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .navbar ul {
   list-style-type: none;
@@ -44,6 +48,33 @@ a {
   text-decoration: none;
   font-weight: bold;
 }
+/*Suchen und Filtern*/
+.filter-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  }
+  .filter-form input[type="text"],
+  .filter-form select,
+  .filter-form button[type="submit"] {
+  margin: 0 10px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  } 
+  .filter-form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  }
+  .filterdiv{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
 /*Tabellen nebeneinander ausgeben*/
 .sidetable{
   overflow-y: auto;
@@ -129,28 +160,6 @@ img{
   height: 20px;
   width: 20px;
 }
-/*Suchen und Filtern*/
-.filter-form {
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-margin-top: 10px;
-}
-.filter-form input[type="text"],
-.filter-form select,
-.filter-form button[type="submit"] {
-margin: 0 10px;
-padding: 5px;
-font-size: 16px;
-border-radius: 5px;
-border: 1px solid #ccc;
-} 
-.filter-form button[type="submit"] {
-background-color: #4CAF50;
-color: white;
-border: none;
-}
 /* Select */
 select {
   background-color: transparent;
@@ -164,4 +173,52 @@ select {
 select:focus {
   outline: none;
   border-bottom: 1px solid #6699cc;
+  /*Speicher form*/
+}
+.card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px auto;
+  max-width: 800px;
+  padding-top: 50px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.form-group {
+  flex: 1 1 300px;
+  margin: 0 10px 0 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.speichern {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.speichern:hover {
+  background-color: #0069d9;
 }

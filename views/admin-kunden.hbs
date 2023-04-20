@@ -23,6 +23,72 @@
         <li><a href="/backup">Backup</a></li>
       </ul>
     </nav>
+    <div class="card">
+      <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminkunden">
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id">
+          </div>
+          <div class="form-group col-md-5">
+            <label for="vorname">Vorname</label>
+            <input type="text" class="form-control" id="vorname" name="vorname">
+          </div>
+          <div class="form-group col-md-5">
+            <label for="nachname">Nachname</label>
+            <input type="text" class="form-control" id="nachname" name="nachname">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-7">
+            <label for="strasse">Straße</label>
+            <input type="text" class="form-control" id="strasse" name="strasse">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="hausnummer">Hausnummer</label>
+            <input type="text" class="form-control" id="hausnummer" name="hausnummer">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="haus">Haus</label>
+            <input type="text" class="form-control" id="haus" name="haus">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="plz">PLZ</label>
+            <input type="text" class="form-control" id="plz" name="plz">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="ort">Ort</label>
+            <input type="text" class="form-control" id="ort" name="ort">
+          </div>
+          <div class="form-group col-md-5">
+            <label for="telefonnummer">Telefonnummer</label>
+            <input type="text" class="form-control" id="telefonnummer" name="telefonnummer">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="ende">Ende</label>
+            <input type="text" class="form-control" id="ende" name="ende">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" name="status">
+              <option value="Ausstehend">Ausstehend</option>
+              <option value="Laufend">Laufend</option>
+              <option value="Fertig">Fertig</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <button class="speichern" type="submit">Speichern</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="filterdiv">
           <form class="filter-form">
                 <div class="search-container">
                     <input class="suchen" type="text" placeholder="Suchen" name="search">
@@ -34,9 +100,12 @@
                         <option value="Laufend">Laufend</option>
                         <option value="Fertig">Fertig</option>
                     </select>
+                 </div>
+                <div>
                     <button type="submit">Filtern/Suchen</button>
                 </div>
             </form>
+      </div>
           <table class="table" >
               <thead class="thead">
                   <tr>
@@ -57,34 +126,6 @@
                   </tr>
               </thead> 
               <tbody class="tbody">
-                <form name="speichernform" id="adminspeichern-form" method="POST" action="/adminkunden">
-                            <tr> 
-                                <td></td>
-                                <td ><input name="id"/></td>
-                                <td><input name="vorname"/></td>
-                                <td ><input name="nachname"/></td>
-                                <td ><input name="strasse"/></td>
-                                <td><input name="hausnummer"/></td>
-                                <td ><input name="haus"/></td>
-                                <td><input name="plz"/></td>
-                                <td><input name="ort"/></td>
-                                <td><input name="telefonnummer"/></td>
-                                <td><input name="ende"/></td>
-                                <td>             
-                                  <select name="status" id="status-select" title="Statusanzeige auswählen">
-                                     <option value="Ausstehend">Ausstehend</option>
-                                      <option value="Laufend">Laufend</option>
-                                      <option value="Fertig">Fertig</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <span class="icon-grid">
-                                         <button class="save-btn" type="submit"><img src="../images/save-icon.png"></button>
-                                    </span>
-                                </td>
-                                <td></td>
-                            </tr>  
-                    </form>  
                   {{#each rows}} 
                     <tr> 
                         <form name="adminform" id="admin-form" method="POST" action="/deleteadminkunden/{{this.id}}">
