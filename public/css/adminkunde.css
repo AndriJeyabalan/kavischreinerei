@@ -1,11 +1,7 @@
 /*Navbar*/
-
 .navbar {
   background-color: #333;
   overflow: hidden;
-  position: fixed;
-  top: 0;
-  width: 100%;
 }
 .navbar ul {
   list-style-type: none;
@@ -181,7 +177,7 @@ select:focus {
   border-radius: 5px;
   margin: 20px auto;
   max-width: 800px;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .form-row {

@@ -58,6 +58,61 @@
               </tbody>
             </table> 
         </div>
+        <div class="sidetable">
+                    <table class="table" >
+              <thead class="thead"> 
+                  <tr>
+                    <th>#</th>
+                    <th scope="col"><a href="?sortBy=Id&sortOrder={{sortOrder}}">Id</a></th> 
+                    <th scope="col"><a href="?sortBy=Username&sortOrder={{sortOrder}}">Username</a></th>
+                    <th scope="col"><a href="?sortBy=Freigabe&sortOrder={{sortOrder}}">Freigabe</a></th>
+                    <th scope="col"><a href="?sortBy=Position&sortOrder={{sortOrder}}">Position</a></th>
+                    <th scope="col"><a href="?sortBy=Stundenansatz&sortOrder={{sortOrder}}">Stundenansatz</a></th>
+                    <th scope="col"><a href="?sortBy=Telefonnummer&sortOrder={{sortOrder}}">Telefonnummer</a></th>
+                    <th scope="col"><a href="?sortBy=email&sortOrder={{sortOrder}}">email</a></th>
+                    <th scope="col"><a href="?sortBy=Strasse&sortOrder={{sortOrder}}">Strasse</a></th>
+                    <th scope="col"><a href="?sortBy=Hausnummer&sortOrder={{sortOrder}}">Hausnummer</a></th>
+                    <th scope="col"><a href="?sortBy=PLZ&sortOrder={{sortOrder}}">PLZ</a></th>
+                    <th scope="col"><a href="?sortBy=Ort&sortOrder={{sortOrder}}">Ort</a></th>
+                    <th scope="col"><a href="?sortBy=Eban&sortOrder={{sortOrder}}">Eban</a></th>
+                    <th>#</th>
+                  </tr>
+              </thead> 
+              <tbody class="tbody"> 
+                  {{#each rowsmitarbeiter}} 
+                    <tr> 
+                        <form name="adminform" id="admin-form" method="POST" action="/deleteadminmitarbeiter/{{this.Id}}">
+                            <td>
+                                <span class="icon-grid">
+                                    <button class="delete-btn" type="submit"><img src="../images/loeschen-icon.png"></button>
+                                </span>
+                            </td> 
+                        </form>
+                        <form name="adminform" id="admin-form" method="POST" action="/alteradminmitarbeiter/{{this.Id}}">
+                            <td ><input name="id" value="{{this.Id}}" /></td>
+                            <td><input name="username" value="{{this.username}}"/></td>
+                            <td ><input name="freigabe" value="{{this.Freigabe}}"/></td>
+                            <td><input name="position" value="{{this.Position}}"/></td>
+                            <td><textarea name="stundenansatz"/>{{this.Stundenansatz}}</textarea></td>
+                            <td><input name="telefonnummer" value="{{this.Telefonnummer}}"/></td>
+                            <td><input name="email" value="{{this.email}}"/></td>
+                            <td><input name="strasse" value="{{this.Strasse}}"/></td>
+                            <td><input name="hausnummer" value="{{this.Hausnummer}}"/></td>
+                            <td><input name="plz" value="{{this.PLZ}}"/></td>
+                            <td><input name="ort" value="{{this.Ort}}"/></td>
+                            <td><input name="eban" value="{{this.Eban}}"/></td>
+                            <td>
+                              <span class="icon-grid">
+                                  <input type="submit" class="bestätigen-btn" value="Bestätigen">
+                              </span> 
+                            </td> 
+                        </form>
+                      </tr>  
+
+                    {{/each}} 
+                  </tbody>
+            </table> 
+        </div>
       </div>
     </body>
 </html>
